@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunny.bugmanage.user.mapper.AppUserExtendMapper">
+    <resultMap id="BaseResultMap" type="com.sunny.bugmanage.user.model.AppUserExtend">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="icon_url" property="iconUrl" jdbcType="VARCHAR"/>
+        <result column="summary" property="summary" jdbcType="VARCHAR"/>
+        <result column="dept" property="dept" jdbcType="VARCHAR"/>
+        <result column="position" property="position" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="TINYINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="likes" property="likes" jdbcType="BIGINT"/>
+        <result column="follow" property="follow" jdbcType="BIGINT"/>
+        <result column="pin" property="pin" jdbcType="VARCHAR"/>
+        <result column="birthdate" property="birthdate" jdbcType="DATE"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    user_id, user_name, nick_name, real_name, sex, mobile, email, icon_url, summary, 
+    dept, position, age, address, likes, follow, pin, birthdate, city, city_id, ip
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from app_user_extend
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from app_user_extend
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.sunny.bugmanage.user.model.AppUserExtend">
+    insert into app_user_extend (user_id, user_name, nick_name, 
+      real_name, sex, mobile, 
+      email, icon_url, summary, 
+      dept, position, age, 
+      address, likes, follow, 
+      pin, birthdate, city, 
+      city_id, ip)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{iconUrl,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{dept,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, 
+      #{address,jdbcType=VARCHAR}, #{likes,jdbcType=BIGINT}, #{follow,jdbcType=BIGINT}, 
+      #{pin,jdbcType=VARCHAR}, #{birthdate,jdbcType=DATE}, #{city,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sunny.bugmanage.user.model.AppUserExtend">
+        insert into app_user_extend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="iconUrl != null">
+                icon_url,
+            </if>
+            <if test="summary != null">
+                summary,
+            </if>
+            <if test="dept != null">
+                dept,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="likes != null">
+                likes,
+            </if>
+            <if test="follow != null">
+                follow,
+            </if>
+            <if test="pin != null">
+                pin,
+            </if>
+            <if test="birthdate != null">
+                birthdate,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="summary != null">
+                #{summary,jdbcType=VARCHAR},
+            </if>
+            <if test="dept != null">
+                #{dept,jdbcType=VARCHAR},
+            </if>
+            <if test="position != null">
+                #{position,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=TINYINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="likes != null">
+                #{likes,jdbcType=BIGINT},
+            </if>
+            <if test="follow != null">
+                #{follow,jdbcType=BIGINT},
+            </if>
+            <if test="pin != null">
+                #{pin,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                #{birthdate,jdbcType=DATE},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.user.model.AppUserExtend">
+        update app_user_extend
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="iconUrl != null">
+                icon_url = #{iconUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="summary != null">
+                summary = #{summary,jdbcType=VARCHAR},
+            </if>
+            <if test="dept != null">
+                dept = #{dept,jdbcType=VARCHAR},
+            </if>
+            <if test="position != null">
+                position = #{position,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=TINYINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="likes != null">
+                likes = #{likes,jdbcType=BIGINT},
+            </if>
+            <if test="follow != null">
+                follow = #{follow,jdbcType=BIGINT},
+            </if>
+            <if test="pin != null">
+                pin = #{pin,jdbcType=VARCHAR},
+            </if>
+            <if test="birthdate != null">
+                birthdate = #{birthdate,jdbcType=DATE},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.user.model.AppUserExtend">
+    update app_user_extend
+    set user_name = #{userName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      likes = #{likes,jdbcType=BIGINT},
+      follow = #{follow,jdbcType=BIGINT},
+      pin = #{pin,jdbcType=VARCHAR},
+      birthdate = #{birthdate,jdbcType=DATE},
+      city = #{city,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

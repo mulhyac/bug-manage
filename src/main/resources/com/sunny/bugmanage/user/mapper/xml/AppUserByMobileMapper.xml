@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunny.bugmanage.user.mapper.AppUserByMobileMapper">
+    <resultMap id="BaseResultMap" type="com.sunny.bugmanage.user.model.AppUserByMobile">
+        <id column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    mobile, user_id
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from app_user_by_mobile
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from app_user_by_mobile
+    where mobile = #{mobile,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.sunny.bugmanage.user.model.AppUserByMobile">
+    insert into app_user_by_mobile (mobile, user_id)
+    values (#{mobile,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sunny.bugmanage.user.model.AppUserByMobile">
+        insert into app_user_by_mobile
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.user.model.AppUserByMobile">
+        update app_user_by_mobile
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.user.model.AppUserByMobile">
+        update app_user_by_mobile
+        set user_id = #{userId,jdbcType=BIGINT}
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </update>
+    
+    <select id="selectAppUserIdByPrimaryKey" resultType="java.lang.Long">
+        select
+          user_id
+        from app_user_by_mobile
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </select>
+</mapper>

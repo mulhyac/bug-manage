@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunny.bugmanage.user.mapper.AppUserByPinMapper" >
+  <resultMap id="BaseResultMap" type="com.sunny.bugmanage.user.model.AppUserByPin" >
+    <id column="pin" property="pin" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pin, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_user_by_pin
+    where pin = #{pin,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from app_user_by_pin
+    where pin = #{pin,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sunny.bugmanage.user.model.AppUserByPin" >
+    insert into app_user_by_pin (pin, user_id)
+    values (#{pin,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sunny.bugmanage.user.model.AppUserByPin" >
+    insert into app_user_by_pin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pin != null" >
+        pin,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pin != null" >
+        #{pin,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.user.model.AppUserByPin" >
+    update app_user_by_pin
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where pin = #{pin,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.user.model.AppUserByPin" >
+    update app_user_by_pin
+    set user_id = #{userId,jdbcType=BIGINT}
+    where pin = #{pin,jdbcType=VARCHAR}
+  </update>
+</mapper>
