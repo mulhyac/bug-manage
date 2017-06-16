@@ -38,16 +38,10 @@ public class AppUserServiceImpl implements AppUserService {
 	@Override
 	public AppUserVo login(HttpServletRequest request, AppUserForm form) {
 		AppUserVo appUser;
-		Long id;
 		String userName = form.getUserName();
-		if (StringUtils.isEmail(userName)) {
-			id = appUserByEmailMapper.selectAppUserIdByPrimaryKey(userName);
-		} else if (StringUtils.isMobile(userName)) {
-			id = appUserByMobileMapper.selectAppUserIdByPrimaryKey(userName);
-		} else {
-			id = appUserByUsernameMapper.selectAppUserIdByPrimaryKey(userName);
-		}
-		if (id==null) {
+		Long id = getAppUserIdByUserName(userName);
+
+		if (id == null) {
 			throw new BugManageException(ResultEnum.USER_NAME_NOT_EXIST);
 		} else {
 			appUser = getAppUserById(id);
@@ -58,6 +52,8 @@ public class AppUserServiceImpl implements AppUserService {
 		} else {
 			String pw = form.getPassword();
 			if (pw.equals(appUser.getPassword())) {
+				//用户信息保存在session中
+				request.getSession().setAttribute("user",appUser);
 				return appUser;
 			} else {
 				throw new BugManageException(ResultEnum.POSSWORD_ERROR);
@@ -73,8 +69,13 @@ public class AppUserServiceImpl implements AppUserService {
 
 	@Override
 	public AppUserVo addAppUser(HttpServletRequest request, AppUserForm form) {
+		String userName = form.getUserName();
+		Long id = getAppUserIdByUserName(userName);
+		if (id != null) {
+			throw new BugManageException(ResultEnum.USER_NAME_EXIST);
+		}
 		try {
-			String userName = form.getUserName();
+
 			String password = form.getPassword();
 			AppUser appUser = new AppUser();
 			appUser.setPassword(password);
@@ -129,5 +130,18 @@ public class AppUserServiceImpl implements AppUserService {
 		}
 
 		appUserExtendMapper.insertSelective(appUserExtend);
+	}
+
+	@Override
+	public Long getAppUserIdByUserName(String userName) {
+		Long id;
+		if (StringUtils.isEmail(userName)) {
+			id = appUserByEmailMapper.selectAppUserIdByPrimaryKey(userName);
+		} else if (StringUtils.isMobile(userName)) {
+			id = appUserByMobileMapper.selectAppUserIdByPrimaryKey(userName);
+		} else {
+			id = appUserByUsernameMapper.selectAppUserIdByPrimaryKey(userName);
+		}
+		return id;
 	}
 }

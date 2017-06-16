@@ -32,6 +32,7 @@
         <druid.version>1.0.26</druid.version>
         <org.slf4j.version>1.7.25</org.slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <spring.session.version>1.2.2.RELEASE</spring.session.version>
     </properties>
 
     <dependencies>
@@ -126,7 +127,12 @@
             <artifactId>spring-boot-starter-redis</artifactId>
             <version>${spring.boot.starter.redis.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>${spring.session.version}</version>
+        </dependency>
+        
         <!--log4j-->
         <dependency>
             <groupId>org.slf4j</groupId>

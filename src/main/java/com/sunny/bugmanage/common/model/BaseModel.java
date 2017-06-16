@@ -1,7 +1,5 @@
 package com.sunny.bugmanage.common.model;
 
-import com.sunny.bugmanage.utils.UUIDUtills;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,11 +9,10 @@ import java.util.Date;
  * @date 2017-06-09 17:01
  * @description:
  */
-public class BaseModel<ID extends Serializable> {
+public class BaseModel<ID extends Serializable> implements Serializable {
 	private ID id;
 
 	private String uuid;
-
 
 	private String creator;
 
@@ -34,7 +31,7 @@ public class BaseModel<ID extends Serializable> {
 	}
 
 	public String getUuid() {
-		return uuid==null? UUIDUtills.getUUID():uuid;
+		return uuid;
 	}
 
 	public void setUuid(String uuid) {
@@ -66,7 +63,7 @@ public class BaseModel<ID extends Serializable> {
 	}
 
 	public Date getModifyTime() {
-		return modifyTime==null?new Date():modifyTime;
+		return modifyTime == null ? new Date() : modifyTime;
 	}
 
 	public void setModifyTime(Date modifyTime) {

@@ -7,11 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @SpringBootApplication
 @EnableAutoConfiguration //开启自动注入bean
 @MapperScan("com.sunny.bugmanage.**.mapper")
 @Import({MyBatisConfig.class, CorsConfig.class/*, RedisConfig.class*/})
+@EnableRedisHttpSession
 public class BugManageApplication {
 
 	public static void main(String[] args) {

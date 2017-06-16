@@ -24,6 +24,10 @@ public enum ResultEnum {
 	 */
 	INSERT_APP_USER_ERROR(3,"注册用户异常" ),
 	/**
+	 * 账号存在
+	 */
+	USER_NAME_EXIST(4,"账号已经存在"),
+	/**
 	 * 参数异常
 	 */
 	PARAMETER_ERROR(100,"参数异常!"), ;

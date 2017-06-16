@@ -33,5 +33,12 @@ public interface AppUserService {
 	 * @return
 	 */
 	AppUserVo addAppUser(HttpServletRequest request, AppUserForm form);
+
+	/**
+	 * 根据用户名获取用户id 
+	 * @param userName
+	 * @return
+	 */
+	Long getAppUserIdByUserName(String userName);
 	
 }

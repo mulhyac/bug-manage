@@ -23,8 +23,7 @@ spring:
      test-on-return: false
   #redis
   redis:
-    host: localhost
-    password: root
+    host: 127.0.0.1
     port: 6379
     pool:
       max-active: 8

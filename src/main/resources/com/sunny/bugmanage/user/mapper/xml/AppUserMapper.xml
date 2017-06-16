@@ -191,6 +191,7 @@
         SELECT
         a.id ,
         a.status,
+        a.uuid,
         a.password,
         a.password2,
         a.create_time,
