@@ -8,7 +8,10 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by sunny on 2017/6/6.
+ * @author sunny
+ * @name  AppUserForm
+ * @date 2017/6/23 15:25
+ * @description:
  */
 public class AppUserForm extends BaseForm<String> {
 	/**
@@ -36,7 +39,7 @@ public class AppUserForm extends BaseForm<String> {
 	 * 用户ip
 	 */
 	private String ip;
-
+	
 	public String getUserName() {
 		return userName;
 	}

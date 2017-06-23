@@ -1,8 +1,11 @@
 package com.sunny.bugmanage.user.mapper;
 
+import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.model.AppUser;
 import com.sunny.bugmanage.user.model.vo.AppUserVo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AppUserMapper {
 	int deleteByPrimaryKey(String id);
@@ -26,4 +29,5 @@ public interface AppUserMapper {
 	 */
 	AppUserVo findAppUserVoByPrimaryKey(@Param("id") Long id, @Param("status") Byte status);
 
+	List<AppUserVo> findAllAppUser(AppUserForm form);
 }

@@ -2,18 +2,21 @@ package com.sunny.bugmanage.user.service.impl;
 
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.fields.Status;
+import com.sunny.bugmanage.common.result.BaseResult;
 import com.sunny.bugmanage.exception.BugManageException;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.mapper.*;
 import com.sunny.bugmanage.user.model.*;
 import com.sunny.bugmanage.user.model.vo.AppUserVo;
 import com.sunny.bugmanage.user.service.AppUserService;
+import com.sunny.bugmanage.utils.ResultUtils;
 import com.sunny.bugmanage.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author sunny
@@ -53,7 +56,7 @@ public class AppUserServiceImpl implements AppUserService {
 			String pw = form.getPassword();
 			if (pw.equals(appUser.getPassword())) {
 				//用户信息保存在session中
-				request.getSession().setAttribute("user",appUser);
+				request.getSession().setAttribute("user", appUser);
 				return appUser;
 			} else {
 				throw new BugManageException(ResultEnum.POSSWORD_ERROR);
@@ -134,6 +137,9 @@ public class AppUserServiceImpl implements AppUserService {
 
 	@Override
 	public Long getAppUserIdByUserName(String userName) {
+		if (StringUtils.isBlank(userName)) {
+			return 0L;
+		}
 		Long id;
 		if (StringUtils.isEmail(userName)) {
 			id = appUserByEmailMapper.selectAppUserIdByPrimaryKey(userName);
@@ -143,5 +149,21 @@ public class AppUserServiceImpl implements AppUserService {
 			id = appUserByUsernameMapper.selectAppUserIdByPrimaryKey(userName);
 		}
 		return id;
+	}
+
+	@Override
+	public List<AppUserVo> getAllAPPUser(AppUserForm form) {
+		return appUserMapper.findAllAppUser(form);
+	}
+
+	@Override
+	public BaseResult checkUserName(String userName) {
+
+		Long id = getAppUserIdByUserName(userName);
+		if (null == id || id == 0) {
+			return ResultUtils.success(ResultEnum.USER_NAME_NOT_EXIST);
+		} else {
+			return ResultUtils.error(ResultEnum.USER_NAME_EXIST);
+		}
 	}
 }

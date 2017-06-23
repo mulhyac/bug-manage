@@ -1,9 +1,11 @@
 package com.sunny.bugmanage.user.service;
 
+import com.sunny.bugmanage.common.result.BaseResult;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.model.vo.AppUserVo;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by sunny on 2017/6/6.
@@ -27,7 +29,7 @@ public interface AppUserService {
 	AppUserVo getAppUserById(Long id);
 
 	/**
-	 * 添加appuser
+	 * 添加app_user
 	 * @param request
 	 * @param form
 	 * @return
@@ -40,5 +42,18 @@ public interface AppUserService {
 	 * @return
 	 */
 	Long getAppUserIdByUserName(String userName);
-	
+
+	/**
+	 * 获取全部app用户
+	 * @param form
+	 * @return
+	 */
+	List<AppUserVo> getAllAPPUser(AppUserForm form);
+
+	/**
+	 * 检查用户名是否存在
+	 * @param userName
+	 * @return
+	 */
+	BaseResult checkUserName(String userName);
 }

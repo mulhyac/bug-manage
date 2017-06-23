@@ -27,6 +27,7 @@ public enum ResultEnum {
 	 * 账号存在
 	 */
 	USER_NAME_EXIST(4,"账号已经存在"),
+	
 	/**
 	 * 参数异常
 	 */
