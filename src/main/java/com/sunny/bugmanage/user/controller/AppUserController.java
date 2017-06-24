@@ -1,6 +1,7 @@
 package com.sunny.bugmanage.user.controller;
 
 import com.sunny.bugmanage.common.result.BaseResult;
+import com.sunny.bugmanage.common.valid.SelectGroup;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.form.valid.LoginGroups;
 import com.sunny.bugmanage.user.form.valid.RegisterGroups;
@@ -21,33 +22,34 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/main/user")
 public class AppUserController {
-	@Autowired
-	private AppUserService appUserService;
+    @Autowired
+    private AppUserService appUserService;
 
-	@ApiOperation(value = "登录", notes = "根据用户名密码获取用户")
-	@PostMapping("/login")
-	public BaseResult login(HttpServletRequest request, @RequestBody @Validated({ LoginGroups.class }) AppUserForm form) {
+    @ApiOperation(value = "登录", notes = "根据用户名密码获取用户")
+    @PostMapping("/login")
+    public BaseResult login(HttpServletRequest request, @RequestBody @Validated({LoginGroups.class}) AppUserForm form) {
 
-		return ResultUtils.success("登录成功", appUserService.login(request, form));
-	}
+        return ResultUtils.success("登录成功", appUserService.login(request, form));
+    }
 
-	@ApiOperation(value = "注册用户", notes = "注册新用户")
-	@PutMapping
-	public BaseResult addAppUser(HttpServletRequest request, @RequestBody @Validated({ RegisterGroups.class }) AppUserForm form) {
+    @ApiOperation(value = "注册用户", notes = "注册新用户")
+    @PutMapping
+    public BaseResult addAppUser(HttpServletRequest request, @RequestBody @Validated({RegisterGroups.class}) AppUserForm form) {
 
-		return ResultUtils.success("注册成功", appUserService.addAppUser(request, form));
-	}
+        return ResultUtils.success("注册成功", appUserService.addAppUser(request, form));
+    }
 
-	@ApiOperation(value = "获取用户", notes = "获取用户(支持分页、模糊搜索)")
-	@GetMapping
-	public BaseResult getAllAPPUser( @RequestBody @Validated({ RegisterGroups.class }) AppUserForm form) {
+    @ApiOperation(value = "获取全部用户", notes = "获取用户(支持分页、模糊搜索)")
+    @RequestMapping(method = RequestMethod.GET)
+    public BaseResult getAllAPPUser(@Validated({SelectGroup.class}) AppUserForm form) {
 
-		return ResultUtils.success("注册成功", appUserService.getAllAPPUser(form));
-	}
-	@ApiOperation(value = "查询用户名是否存在", notes = "查询用户名是否存在")
-	@GetMapping(value = "/check/{userName:.+}"/*,produces = {"application/json"}*/)
-	public BaseResult checkUserName(@PathVariable("userName") String userName) {
+        return ResultUtils.success(appUserService.getAllAPPUser(form));
+    }
 
-		return appUserService.checkUserName(userName);
-	}
+    @ApiOperation(value = "查询用户名是否存在", notes = "查询用户名是否存在")
+    @GetMapping(value = "/check/{userName:.+}"/*,produces = {"application/json"}*/)
+    public BaseResult checkUserName(@PathVariable("userName") String userName) {
+
+        return appUserService.checkUserName(userName);
+    }
 }

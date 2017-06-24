@@ -7,7 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 /**
- * Created by sunny on 2017/6/6.
+ * @author sunny
+ * @name  CorsConfig
+ * @date 2017/6/24 15:41 
+ * @description:    配置跨域设置  可以与  com.sunny.bugmanage.config.SpringMVCWebConfigAdapter 整合一起
+ *
  */
 public class CorsConfig extends WebMvcConfigurerAdapter {
 	@Override

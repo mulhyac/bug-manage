@@ -1,8 +1,9 @@
 package com.sunny.bugmanage.common.form;
 
 import com.sunny.bugmanage.common.valid.SelectGroup;
+import com.sunny.bugmanage.utils.StringUtils;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -11,73 +12,93 @@ import java.io.Serializable;
  * @description 基础form
  */
 public class BaseForm<T extends Serializable> implements Serializable {
-	/**
-	 * 每页显示多少
-	 */
-	@Size(max = 10, message = "每页最多显示10条数据", groups = { SelectGroup.class })
-	private Integer pageSize;
-	/**
-	 * 当前第几页
-	 */
-	@Size(min = 1, message = "当前页最小值是1", groups = { SelectGroup.class })
-	private Integer pageNum;
-	/**
-	 * 模糊查询使用的key
-	 */
-	private String key;
 
-	/**
-	 * 是否模糊查询
-	 */
-	private Boolean funzzy;
-	/**
-	 * 主键id
-	 */
-	private T id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 634044498033223687L;
 
-	public Integer getPageSize() {
-		if (this.pageSize <= 0) {
-			this.pageSize = 10;
-		}
-		return pageSize;
-	}
+    /**
+     * 每页显示多少
+     */
+    @NotNull(message = "请输入每页显示多少条数据", groups = {SelectGroup.class})
+   /* @Max(value = 10, message = "每页最多显示10条数据", groups = {SelectGroup.class})*/
+    private Integer pageSize;
+    /**
+     * 当前第几页
+     */
+    @NotNull(message = "请输入当前第几页", groups = {SelectGroup.class})
+    /*@Min(value = 1, message = "当前页最小值是1", groups = {SelectGroup.class})*/
+    private Integer pageNum;
 
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
+    private Byte status;
+    /**
+     * 模糊查询使用的key
+     */
+    private String key;
 
-	public Integer getPageNum() {
-		if (this.pageNum <= 0) {
-			this.pageNum = 1;
-		}
-		return (pageNum - 1) * this.pageSize;
-	}
+    /**
+     * 是否模糊查询
+     */
+    private Boolean funzzy;
+    /**
+     * 主键id
+     */
+    private T id;
 
-	public void setPageNum(Integer pageNum) {
-		this.pageNum = pageNum;
-	}
+    public Integer getPageSize() {
+        if (this.pageSize <= 0) {
+            this.pageSize = 10;
+        }
+        return pageSize;
+    }
 
-	public String getKey() {
-		return key;
-	}
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	public void setKey(String key) {
-		this.key = key;
-	}
+    public Integer getPageNum() {
+        if (this.pageNum <= 0) {
+            this.pageNum = 1;
+        }
+        return (pageNum - 1) * this.pageSize;
+    }
 
-	public T getId() {
-		return id;
-	}
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
 
-	public void setId(T id) {
-		this.id = id;
-	}
+    public String getKey() {
 
-	public Boolean getFunzzy() {
-		return funzzy == null ? this.funzzy = true : this.funzzy;
-	}
+        return StringUtils.isBlank(this.key) ? "" : this.key;
+    }
 
-	public void setFunzzy(Boolean funzzy) {
-		this.funzzy = funzzy;
-	}
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public void setId(T id) {
+        this.id = id;
+    }
+
+    public Boolean getFunzzy() {
+        return funzzy == null ? this.funzzy = true : this.funzzy;
+    }
+
+    public void setFunzzy(Boolean funzzy) {
+        this.funzzy = funzzy;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
 }

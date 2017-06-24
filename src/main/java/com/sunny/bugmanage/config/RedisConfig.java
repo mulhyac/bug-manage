@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * @date 2017-06-19 16:09
  * @description:
  */
-@EnableCaching
+@EnableCaching   //开启缓存
 public class RedisConfig extends CachingConfigurerSupport {
 	@Bean
 	public KeyGenerator wiselyKeyGenerator() {

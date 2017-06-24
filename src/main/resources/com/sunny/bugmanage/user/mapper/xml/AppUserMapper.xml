@@ -15,9 +15,9 @@
         <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, uuid, password, password2, source, status, password_date, creator, create_time, 
-    modifier, modify_time
-  </sql>
+        id, uuid, password, password2, source, status, password_date, creator, create_time,
+        modifier, modify_time
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -25,9 +25,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from app_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from app_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <insert id="insert" parameterType="com.sunny.bugmanage.user.model.AppUser">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
@@ -210,5 +210,38 @@
         <if test="status!=null">
             and a.status &lt;=#{status};
         </if>
+    </select>
+    <!--获取全部用户-->
+    <select id="findAllAppUser" resultMap="AppUserVo" parameterType="com.sunny.bugmanage.user.form.AppUserForm">
+        SELECT
+        a.id ,
+        a.status,
+        a.uuid,
+        a.password,
+        a.password2,
+        a.create_time,
+        a.creator,
+        a.password_date,
+        b.user_name,
+        b.nick_name,
+        b.sex,
+        b.mobile,
+        b.city,
+        b.likes,
+        b.follow,
+        b.user_id
+        from app_user a left join app_user_extend b on a.id=b.user_id
+        where a.status &lt;=#{status}
+        <if test="key!='' and key!=null ">
+            <choose>
+                <when test="funzzy == true">
+                    AND b.user_name LIKE CONCAT('%',#{key,jdbcType=VARCHAR,javaType=java.lang.String},'%')
+                </when>
+                <otherwise>
+                    AND b.user_name =#{key,jdbcType=VARCHAR,javaType=java.lang.String}
+                </otherwise>
+            </choose>
+        </if>
+        LIMIT #{pageNum},#{pageSize}
     </select>
 </mapper>

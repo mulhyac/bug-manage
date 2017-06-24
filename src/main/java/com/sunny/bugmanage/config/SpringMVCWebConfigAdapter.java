@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class SpringMVCWebConfigAdapter extends WebMvcConfigurerAdapter {
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
-		//支持url sunny.com 参数
+		//url支持 sunny.com 参数
 		configurer.setUseSuffixPatternMatch(false);
 	}
 }

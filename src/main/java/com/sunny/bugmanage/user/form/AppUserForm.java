@@ -39,7 +39,7 @@ public class AppUserForm extends BaseForm<String> {
 	 * 用户ip
 	 */
 	private String ip;
-	
+
 	public String getUserName() {
 		return userName;
 	}
