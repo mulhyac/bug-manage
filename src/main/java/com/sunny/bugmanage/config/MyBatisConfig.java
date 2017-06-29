@@ -66,7 +66,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         sqlSessionFactoryBean.setPlugins(new Interceptor[]{pageHelper});*/
         try {
             //添加XML目录
-            sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/sunny/**/*Mapper.xml"));
+            sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/sunny/bugmanage/**/**/mapper/xml/*Mapper.xml"));
             return sqlSessionFactoryBean.getObject();
         } catch (Exception e) {
             e.printStackTrace();
