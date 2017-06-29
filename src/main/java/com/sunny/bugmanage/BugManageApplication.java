@@ -1,6 +1,5 @@
 package com.sunny.bugmanage;
 
-import com.sunny.bugmanage.common.aspects.BugAspect;
 import com.sunny.bugmanage.config.CorsConfig;
 import com.sunny.bugmanage.config.MyBatisConfig;
 import com.sunny.bugmanage.config.RedisConfig;
@@ -12,9 +11,9 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @EnableAutoConfiguration //开启自动注入bean
-@MapperScan(basePackages="com.sunny.bugmanage")
-@Import({MyBatisConfig.class, CorsConfig.class, RedisConfig.class, BugAspect.class/*, SpringMVCWebConfigAdapter.class*/})
-/*@EnableRedisHttpSession*/     //开启spring session
+@MapperScan("com.sunny.bugmanage.**.mapper")
+@Import({MyBatisConfig.class, CorsConfig.class, RedisConfig.class})
+//@EnableRedisHttpSession
 public class BugManageApplication {
 
 	public static void main(String[] args) {
