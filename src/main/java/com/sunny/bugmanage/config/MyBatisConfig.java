@@ -23,6 +23,7 @@ import javax.sql.DataSource;
 
 //加上这个注解，使得支持事务
 @EnableTransactionManagement
+/*@ComponentScan(basePackages = "com.sunny.bugmanage", includeFilters = @ComponentScan.Filter(Configuration.class))*/
 public class MyBatisConfig implements TransactionManagementConfigurer {
     @Autowired
     private DataSource dataSource;
@@ -65,7 +66,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         sqlSessionFactoryBean.setPlugins(new Interceptor[]{pageHelper});*/
         try {
             //添加XML目录
-            sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/sunny/bugmanage/**/mapper/xml/*Mapper.xml"));
+            sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/sunny/**/*Mapper.xml"));
             return sqlSessionFactoryBean.getObject();
         } catch (Exception e) {
             e.printStackTrace();

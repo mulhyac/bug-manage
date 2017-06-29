@@ -9,74 +9,79 @@ import javax.validation.constraints.NotNull;
 
 /**
  * @author sunny
- * @name  AppUserForm
+ * @name AppUserForm
  * @date 2017/6/23 15:25
  * @description:
  */
 public class AppUserForm extends BaseForm<String> {
-	/**
-	 * 用户名
-	 */
-	@NotNull(message = "请输入用户名", groups = { LoginGroups.class, RegisterGroups.class })
-	@Length(max = 50, message = "账号最长50位", groups = { RegisterGroups.class })
-	private String userName;
-	/**
-	 * 密码
-	 */
-	@NotNull(message = "请输入密码", groups = { LoginGroups.class, RegisterGroups.class })
-	@Length(max = 50, min = 6, message = "密码长度在6-50位字符", groups = { RegisterGroups.class })
-	private String password;
-	/**
-	 * 城市
-	 */
-	//@NotNull(message = "请输入所在的城市",groups = {RegisterGroups.class})
-	private String city;
-	/**
-	 * 城市id
-	 */
-	private String cityId;
-	/***
-	 * 用户ip
-	 */
-	private String ip;
+    public AppUserForm() {
+        super();
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    /**
+     * 用户名
+     */
+    @NotNull(message = "请输入用户名", groups = {LoginGroups.class, RegisterGroups.class})
+    @Length(max = 50, message = "账号最长50位", groups = {RegisterGroups.class})
+    private String userName;
+    /**
+     * 密码
+     */
+    @NotNull(message = "请输入密码", groups = {LoginGroups.class, RegisterGroups.class})
+    @Length(max = 50, min = 6, message = "密码长度在6-50位字符", groups = {RegisterGroups.class})
+    private String password;
+    /**
+     * 城市
+     */
+    //@NotNull(message = "请输入所在的城市",groups = {RegisterGroups.class})
+    private String city;
+    /**
+     * 城市id
+     */
+    private String cityId;
+    /***
+     * 用户ip
+     */
+    private String ip;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getCityId() {
-		return cityId;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setCityId(String cityId) {
-		this.cityId = cityId;
-	}
+    public String getCityId() {
+        return cityId;
+    }
 
-	public String getIp() {
-		return ip;
-	}
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
 
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
 }

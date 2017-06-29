@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sunny.bugmanage.org.mapper.ProjectIssueMapper" >
+  <resultMap id="BaseResultMap" type="com.sunny.bugmanage.org.model.ProjectIssue" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="pro_v_uuid" property="proVUuid" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="user_uuid" property="userUuid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="browse" property="browse" jdbcType="INTEGER" />
+    <result column="follow" property="follow" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uuid, title, pro_v_uuid, priority, description, user_uuid, status, browse, follow, 
+    creator, create_time, modifier, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from project_issue
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from project_issue
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sunny.bugmanage.org.model.ProjectIssue" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into project_issue (uuid, title, pro_v_uuid, 
+      priority, description, user_uuid, 
+      status, browse, follow, 
+      creator, create_time, modifier, 
+      modify_time)
+    values (#{uuid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{proVUuid,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}, #{userUuid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{browse,jdbcType=INTEGER}, #{follow,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sunny.bugmanage.org.model.ProjectIssue" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into project_issue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="proVUuid != null" >
+        pro_v_uuid,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="browse != null" >
+        browse,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="proVUuid != null" >
+        #{proVUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="browse != null" >
+        #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.org.model.ProjectIssue" >
+    update project_issue
+    <set >
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="proVUuid != null" >
+        pro_v_uuid = #{proVUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null" >
+        user_uuid = #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="browse != null" >
+        browse = #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="follow != null" >
+        follow = #{follow,jdbcType=INTEGER},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.org.model.ProjectIssue" >
+    update project_issue
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      pro_v_uuid = #{proVUuid,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=TINYINT},
+      description = #{description,jdbcType=VARCHAR},
+      user_uuid = #{userUuid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      browse = #{browse,jdbcType=INTEGER},
+      follow = #{follow,jdbcType=INTEGER},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

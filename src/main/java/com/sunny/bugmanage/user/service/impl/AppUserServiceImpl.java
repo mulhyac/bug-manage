@@ -11,6 +11,7 @@ import com.sunny.bugmanage.user.model.vo.AppUserVo;
 import com.sunny.bugmanage.user.service.AppUserService;
 import com.sunny.bugmanage.utils.ResultUtils;
 import com.sunny.bugmanage.utils.StringUtils;
+import com.sunny.bugmanage.utils.UUIDUtills;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -80,9 +81,10 @@ public class AppUserServiceImpl implements AppUserService {
             throw new BugManageException(ResultEnum.USER_NAME_EXIST);
         }
         try {
-
             String password = form.getPassword();
+            
             AppUser appUser = new AppUser();
+            appUser.setUuid(UUIDUtills.getUUID());
             appUser.setPassword(password);
             appUser.setPassword2(password);
             appUser.setCreator(userName);
@@ -138,7 +140,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    @Cacheable(value = "getAppUserIdByUserName", key = "#userName", unless = "#result==null")
+    @Cacheable(value = "getAppUserIdByUserName", key = "#userName", condition = "#userName!=null ||#userName!=''")
     public Long getAppUserIdByUserName(String userName) {
         if (StringUtils.isBlank(userName)) {
             return 0L;
@@ -155,7 +157,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    @Cacheable(value = "getAllAPPUser", key = "#form.getKey()+#form.getPageNum()+#form.getPageSize()", unless = "#result==null")
+    //@Cacheable(value = "getAllAPPUser", key = "#form.getKey() + #form.getPageNum()+ form.getPageSize()")hello
     public List<AppUserVo> getAllAPPUser(AppUserForm form) {
         form.setStatus(Status.APPUser_Disable_Status); //TODO:后期添加用户状态
 
@@ -163,6 +165,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
+    @Cacheable(value = "getAllAPPUser", key = "#userName")
     public BaseResult checkUserName(String userName) {
 
         Long id = getAppUserIdByUserName(userName);

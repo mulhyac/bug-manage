@@ -122,7 +122,7 @@
         </dependency>
 
         <!-- redis -->
-        <dependency>
+   <!--     <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-redis</artifactId>
             <version>${spring.boot.starter.redis.version}</version>
@@ -131,7 +131,7 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
             <version>${spring.session.version}</version>
-        </dependency>
+        </dependency>-->
         <!--redis数据缓存-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -153,11 +153,21 @@
               <groupId>org.springframework.boot</groupId>
               <artifactId>spring-boot-starter-log4j2</artifactId>
           </dependency>-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.alipay</groupId>
             <artifactId>alipay-sdk-java</artifactId>
             <version>20161129201425</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>-->
     </dependencies>
 
     <build>

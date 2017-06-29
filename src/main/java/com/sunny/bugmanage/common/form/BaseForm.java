@@ -12,6 +12,9 @@ import java.io.Serializable;
  * @description 基础form
  */
 public class BaseForm<T extends Serializable> implements Serializable {
+    public BaseForm() {
+        super();
+    }
 
     /**
      *
@@ -100,5 +103,6 @@ public class BaseForm<T extends Serializable> implements Serializable {
     public void setStatus(Byte status) {
         this.status = status;
     }
+
 
 }
