@@ -61,7 +61,7 @@ public class BugManageInterceptor implements HandlerInterceptor {
      */
     private boolean isInterceptor(String path) {
         for (String exclude : EXCLUDES) {
-            if (exclude.startsWith(path)) {
+            if (path.startsWith(exclude)) {
                 return false;
             }
         }

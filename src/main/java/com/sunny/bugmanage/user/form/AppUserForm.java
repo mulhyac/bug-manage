@@ -14,10 +14,6 @@ import javax.validation.constraints.NotNull;
  * @description:
  */
 public class AppUserForm extends BaseForm<String> {
-    public AppUserForm() {
-        super();
-    }
-
     /**
      * 用户名
      */

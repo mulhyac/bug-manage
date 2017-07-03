@@ -1,8 +1,10 @@
 package com.sunny.bugmanage.common.form;
 
-import com.sunny.bugmanage.common.valid.SelectGroup;
 import com.sunny.bugmanage.common.utils.StringUtils;
+import com.sunny.bugmanage.common.valid.SelectGroup;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -12,10 +14,6 @@ import java.io.Serializable;
  * @description 基础form
  */
 public class BaseForm<T extends Serializable> implements Serializable {
-    public BaseForm() {
-        super();
-    }
-
     /**
      *
      */
@@ -25,13 +23,13 @@ public class BaseForm<T extends Serializable> implements Serializable {
      * 每页显示多少
      */
     @NotNull(message = "请输入每页显示多少条数据", groups = {SelectGroup.class})
-   /* @Max(value = 10, message = "每页最多显示10条数据", groups = {SelectGroup.class})*/
+    @Max(value = 10, message = "每页最多显示10条数据", groups = {SelectGroup.class})
     private Integer pageSize;
     /**
      * 当前第几页
      */
     @NotNull(message = "请输入当前第几页", groups = {SelectGroup.class})
-    /*@Min(value = 1, message = "当前页最小值是1", groups = {SelectGroup.class})*/
+    @Min(value = 1, message = "当前页最小值是1", groups = {SelectGroup.class})
     private Integer pageNum;
 
     private Byte status;
