@@ -2,13 +2,11 @@ package com.sunny.bugmanage.user.controller;
 
 import com.sunny.bugmanage.common.aspects.cache.Cacheable;
 import com.sunny.bugmanage.common.result.BaseResult;
+import com.sunny.bugmanage.common.utils.ResultUtils;
 import com.sunny.bugmanage.common.valid.SelectGroup;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.model.WeixinUser;
 import com.sunny.bugmanage.user.service.AppUserService;
-import com.sunny.bugmanage.common.utils.ResultUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2017-06-3 09:09
  * @description:
  */
-@Api(value = "AppUserController", description = "用户相关接口")
+//@Api(value = "AppUserController", description = "用户相关接口")
 @RestController
 @RequestMapping("/user")
 public class AppUserController {
     @Autowired
     private AppUserService appUserService;
     
-    @ApiOperation(value = "获取全部用户", notes = "获取用户(支持分页、模糊搜索)")
+   // @ApiOperation(value = "获取全部用户", notes = "获取用户(支持分页、模糊搜索)")
     @RequestMapping(method = RequestMethod.GET)
     @Cacheable(value = "获取全部用户", key = "'#root.methodName_'+#form.getKey()+#form.getPageNum()+#form.getPageSize()")
     public BaseResult getAllAPPUser(@Validated({SelectGroup.class}) AppUserForm form) {
@@ -40,7 +38,7 @@ public class AppUserController {
 
 
 
-    @ApiOperation(value = "查询用户名是否存在", notes = "查询用户名是否存在")
+    //@ApiOperation(value = "查询用户名是否存在", notes = "查询用户名是否存在")
     @GetMapping(value = "/code",produces = {"application/json"})
     public BaseResult getCode(String code) {
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1b35d0bff220017e&redirect_uri=http://zyx.tunnel.ifugle.cn/bug/main/user/code&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
