@@ -76,7 +76,7 @@
         </dependency>
 
         <!-- Swagger API文档 -->
-        <dependency>
+       <!-- <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox.swagger.ui.version}</version>
@@ -85,7 +85,7 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox.swagger.ui.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Mybatis -->
         <dependency>
