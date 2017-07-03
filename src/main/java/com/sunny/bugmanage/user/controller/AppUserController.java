@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(value = "AppUserController", description = "用户相关接口")
 @RestController
-@RequestMapping("/main/user")
+@RequestMapping("/user")
 public class AppUserController {
     @Autowired
     private AppUserService appUserService;
