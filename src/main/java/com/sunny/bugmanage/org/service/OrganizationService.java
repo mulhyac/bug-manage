@@ -40,11 +40,11 @@ public interface OrganizationService {
     void  modifierOrg(OrgForm form);
 
     /**
-     * 根据uuid获取组织
+     * 根据uuid获取组织 id
      * @param uuid
      * @return
      */
-    OrganizationVo getOrgByUUID(String uuid);
+    Long getOrgByUUID(String uuid);
 
     /**
      * 根据uuid删除组织

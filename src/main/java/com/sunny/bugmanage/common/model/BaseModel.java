@@ -1,5 +1,8 @@
 package com.sunny.bugmanage.common.model;
 
+import com.sunny.bugmanage.common.UserContext.BugAppUser;
+import com.sunny.bugmanage.common.utils.StringUtils;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,63 +13,63 @@ import java.util.Date;
  * @description:
  */
 public class BaseModel<ID extends Serializable> implements Serializable {
-	private ID id;
+    private ID id;
 
-	private String uuid;
+    private String uuid;
 
-	private String creator;
+    private String creator;
 
-	private Date createTime;
+    private Date createTime;
 
-	private String modifier;
+    private String modifier;
 
-	private Date modifyTime;
+    private Date modifyTime;
 
-	public ID getId() {
-		return id;
-	}
+    public ID getId() {
+        return id;
+    }
 
-	public void setId(ID id) {
-		this.id = id;
-	}
+    public void setId(ID id) {
+        this.id = id;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public String getUuid() {
+        return uuid;
+    }
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-	public String getCreator() {
-		return creator;
-	}
+    public String getCreator() {
+        return StringUtils.isBlank(BugAppUser.userUUId()) ? "" : creator;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
-	public Date getCreateTime() {
-		return createTime == null ? new Date() : createTime;
-	}
+    public Date getCreateTime() {
+        return createTime == null ? new Date() : createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public String getModifier() {
-		return modifier;
-	}
+    public String getModifier() {
+        return StringUtils.isBlank(BugAppUser.userUUId()) ? "" : modifier;
+    }
 
-	public void setModifier(String modifier) {
-		this.modifier = modifier;
-	}
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
 
-	public Date getModifyTime() {
-		return modifyTime == null ? new Date() : modifyTime;
-	}
+    public Date getModifyTime() {
+        return modifyTime == null ? new Date() : modifyTime;
+    }
 
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
 }

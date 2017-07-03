@@ -2,19 +2,18 @@ package com.sunny.bugmanage.user.service.impl;
 
 import com.sunny.bugmanage.common.UserContext.BugAppUser;
 import com.sunny.bugmanage.common.enums.ResultEnum;
+import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.common.fields.Status;
 import com.sunny.bugmanage.common.result.BaseResult;
-import com.sunny.bugmanage.common.exception.BugManageException;
+import com.sunny.bugmanage.common.utils.ResultUtils;
+import com.sunny.bugmanage.common.utils.StringUtils;
+import com.sunny.bugmanage.common.utils.UUIDUtills;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.mapper.*;
 import com.sunny.bugmanage.user.model.*;
 import com.sunny.bugmanage.user.model.vo.AppUserVo;
 import com.sunny.bugmanage.user.service.AppUserService;
-import com.sunny.bugmanage.common.utils.ResultUtils;
-import com.sunny.bugmanage.common.utils.StringUtils;
-import com.sunny.bugmanage.common.utils.UUIDUtills;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +59,7 @@ public class AppUserServiceImpl implements AppUserService {
             String pw = form.getPassword();
             if (pw.equals(appUser.getPassword())) {
                 //用户信息保存在session中
-            
+
                 appUser.setSessionId(request.getSession().getId());
                 BugAppUser.setAppUser(request,appUser);
                 return appUser;
@@ -138,12 +137,12 @@ public class AppUserServiceImpl implements AppUserService {
             appUserByUsernameMapper.insertSelective(name);
             appUserExtend.setUserName(userName);
         }
-
+        appUserExtend.setNickName(userName);
         appUserExtendMapper.insertSelective(appUserExtend);
     }
 
     @Override
-    @Cacheable(value = "getAppUserIdByUserName", key = "#userName", condition = "#userName!=null ||#userName!=''")
+    //@Cacheable(value = "getAppUserIdByUserName", key = "#userName", condition = "#userName!=null ||#userName!=''")
     public Long getAppUserIdByUserName(String userName) {
         if (StringUtils.isBlank(userName)) {
             return 0L;
@@ -168,7 +167,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    @Cacheable(value = "getAllAPPUser", key = "#userName")
+    //@Cacheable(value = "getAllAPPUser", key = "#userName")
     public BaseResult checkUserName(String userName) {
 
         Long id = getAppUserIdByUserName(userName);
@@ -177,5 +176,10 @@ public class AppUserServiceImpl implements AppUserService {
         } else {
             return ResultUtils.error(ResultEnum.USER_NAME_EXIST);
         }
+    }
+
+    @Override
+    public String getAppUserNickNameByUuid(String uuId) {
+        return appUserMapper.selectAppUserNickNameByUuid(uuId);
     }
 }

@@ -1,9 +1,8 @@
 package com.sunny.bugmanage.org.model;
 
-import java.util.Date;
+import com.sunny.bugmanage.common.model.BaseModel;
 
-public class OrganizationUser {
-    private Long id;
+public class OrganizationUser extends BaseModel<Long> {
 
     private String orgUuid;
 
@@ -16,23 +15,7 @@ public class OrganizationUser {
     private Byte status;
 
     private String position;
-
-    private String creator;
-
-    private Date createTime;
-
-    private String modifier;
-
-    private Date modifyTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
     public String getOrgUuid() {
         return orgUuid;
     }
@@ -79,37 +62,5 @@ public class OrganizationUser {
 
     public void setPosition(String position) {
         this.position = position == null ? null : position.trim();
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator == null ? null : creator.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getModifier() {
-        return modifier;
-    }
-
-    public void setModifier(String modifier) {
-        this.modifier = modifier == null ? null : modifier.trim();
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
     }
 }

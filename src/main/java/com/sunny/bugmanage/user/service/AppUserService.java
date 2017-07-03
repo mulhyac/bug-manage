@@ -22,11 +22,18 @@ public interface AppUserService {
 	AppUserVo login(HttpServletRequest request, AppUserForm form);
 
 	/**
-	 * 根据用户id获取用户详情
+	 * 根据用户uuid获取用户详情
 	 * @param id
 	 * @return
 	 */
 	AppUserVo getAppUserById(Long id);
+
+	/**
+	 * 根据uuid获取用户昵称
+	 * @param uuId
+	 * @return
+	 */
+	String getAppUserNickNameByUuid(String uuId);
 
 	/**
 	 * 添加app_user

@@ -244,4 +244,12 @@
         </if>
         LIMIT #{pageNum},#{pageSize}
     </select>
+    <!--根据用户uuid获取用户昵称-->
+    <select id="selectAppUserNickNameByUuid" resultType="java.lang.String">
+           select
+           b.nick_name
+           from app_user a LEFT join  app_user_extend b on a.id=b.user_id
+           where a.status &lt;=120
+           and a.uuid =#{uuid,jdbcType=VARCHAR}
+    </select>
 </mapper>

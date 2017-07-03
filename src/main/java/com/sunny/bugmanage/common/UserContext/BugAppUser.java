@@ -108,7 +108,7 @@ public final class BugAppUser implements Serializable {
     /**
      * @param appUser
      */
-     static void setAppUser(AppUserVo appUser) {
+    static void setAppUser(AppUserVo appUser) {
         if (null == appUser) {
             throw new BugManageException("试图在线程本地存储无效的用户对象！");
         }
@@ -118,7 +118,7 @@ public final class BugAppUser implements Serializable {
         } else {
             userHolder.set(appUser);
         }
-   
+
     }
 
     /**
@@ -157,8 +157,8 @@ public final class BugAppUser implements Serializable {
                 userEnv.put(USER_ID, appUser.getId());
                 userEnv.put(USER_UUID, appUser.getUuid());
                 userEnv.put(SESSION_ID, appUser.getSessionId());
-                userEnv.put(NICK_NAME, StringUtils.isBlank(appUser.getNickName())?"":appUser.getNickName());
-                userEnv.put(REAL_NAME, StringUtils.isBlank(appUser.getRealName())?"":appUser.getRealName());
+                userEnv.put(NICK_NAME, StringUtils.isBlank(appUser.getNickName()) ? "" : appUser.getNickName());
+                userEnv.put(REAL_NAME, StringUtils.isBlank(appUser.getRealName()) ? "" : appUser.getRealName());
             }
         }
     }
@@ -166,7 +166,7 @@ public final class BugAppUser implements Serializable {
     /**
      * 获取账号
      */
-   public static String userName() {
+    public static String userName() {
         return (String) userEnv.get(USER_NAME);
     }
 
@@ -191,5 +191,10 @@ public final class BugAppUser implements Serializable {
      */
     public static String nickName() {
         return (String) userEnv.get(NICK_NAME);
+    }
+
+    public static String userUUId() {
+        String uuId = (String) userEnv.get(USER_UUID);
+        return StringUtils.isBlank(uuId) ? "" : uuId;
     }
 }

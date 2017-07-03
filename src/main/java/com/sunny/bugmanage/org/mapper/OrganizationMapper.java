@@ -3,6 +3,7 @@ package com.sunny.bugmanage.org.mapper;
 import com.sunny.bugmanage.org.form.OrgForm;
 import com.sunny.bugmanage.org.model.Organization;
 import com.sunny.bugmanage.org.model.vo.OrganizationVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -34,4 +35,12 @@ public interface OrganizationMapper {
      * @return
      */
     List<OrganizationVo> selectAllOrg(OrgForm form);
+
+    /**
+     * 根据uuid获取组织id
+     *
+     * @param uuid
+     * @return
+     */
+    Long selectOrgByUUID(@Param("uuid") String uuid);
 }

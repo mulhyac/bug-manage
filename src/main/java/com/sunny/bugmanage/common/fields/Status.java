@@ -19,4 +19,9 @@ public class Status {
 	 * 用户无用状态
 	 */
 	public static Byte APPUser_Disable_Status=120;
+
+	/**
+	 * 组织成员角色--管理员
+	 */
+	public static Byte ORG_USER_ROLE_MANAGE=30;
 }

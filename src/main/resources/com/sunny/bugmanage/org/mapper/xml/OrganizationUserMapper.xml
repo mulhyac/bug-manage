@@ -1,153 +1,153 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sunny.bugmanage.org.mapper.OrganizationUserMapper" >
-  <resultMap id="BaseResultMap" type="com.sunny.bugmanage.org.model.OrganizationUser" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="org_uuid" property="orgUuid" jdbcType="VARCHAR" />
-    <result column="user_uuid" property="userUuid" jdbcType="VARCHAR" />
-    <result column="role" property="role" jdbcType="TINYINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="TINYINT" />
-    <result column="position" property="position" jdbcType="VARCHAR" />
-    <result column="creator" property="creator" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
-    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.sunny.bugmanage.org.mapper.OrganizationUserMapper">
+    <resultMap id="BaseResultMap" type="com.sunny.bugmanage.org.model.OrganizationUser">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="org_uuid" property="orgUuid" jdbcType="VARCHAR"/>
+        <result column="user_uuid" property="userUuid" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="TINYINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="position" property="position" jdbcType="VARCHAR"/>
+        <result column="creator" property="creator" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modifier" property="modifier" jdbcType="VARCHAR"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, org_uuid, user_uuid, role, name, status, position, creator, create_time, modifier, 
     modify_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from organization_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from organization_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from organization_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.sunny.bugmanage.org.model.OrganizationUser" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into organization_user (org_uuid, user_uuid, role, 
-      name, status, position, 
-      creator, create_time, modifier, 
-      modify_time)
-    values (#{orgUuid,jdbcType=VARCHAR}, #{userUuid,jdbcType=VARCHAR}, #{role,jdbcType=TINYINT}, 
-      #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{position,jdbcType=VARCHAR}, 
-      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.sunny.bugmanage.org.model.OrganizationUser" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into organization_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orgUuid != null" >
-        org_uuid,
-      </if>
-      <if test="userUuid != null" >
-        user_uuid,
-      </if>
-      <if test="role != null" >
-        role,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="position != null" >
-        position,
-      </if>
-      <if test="creator != null" >
-        creator,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="modifier != null" >
-        modifier,
-      </if>
-      <if test="modifyTime != null" >
-        modify_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orgUuid != null" >
-        #{orgUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userUuid != null" >
-        #{userUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="role != null" >
-        #{role,jdbcType=TINYINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="position != null" >
-        #{position,jdbcType=VARCHAR},
-      </if>
-      <if test="creator != null" >
-        #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifier != null" >
-        #{modifier,jdbcType=VARCHAR},
-      </if>
-      <if test="modifyTime != null" >
-        #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.org.model.OrganizationUser" >
-    update organization_user
-    <set >
-      <if test="orgUuid != null" >
-        org_uuid = #{orgUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="userUuid != null" >
-        user_uuid = #{userUuid,jdbcType=VARCHAR},
-      </if>
-      <if test="role != null" >
-        role = #{role,jdbcType=TINYINT},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="position != null" >
-        position = #{position,jdbcType=VARCHAR},
-      </if>
-      <if test="creator != null" >
-        creator = #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifier != null" >
-        modifier = #{modifier,jdbcType=VARCHAR},
-      </if>
-      <if test="modifyTime != null" >
-        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.org.model.OrganizationUser" >
+    <insert id="insert" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into organization_user (org_uuid, user_uuid, role,
+        name, status, position,
+        creator, create_time, modifier,
+        modify_time)
+        values (#{orgUuid,jdbcType=VARCHAR}, #{userUuid,jdbcType=VARCHAR}, #{role,jdbcType=TINYINT},
+        #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{position,jdbcType=VARCHAR},
+        #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+        #{modifyTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
+        <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into organization_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orgUuid != null">
+                org_uuid,
+            </if>
+            <if test="userUuid != null">
+                user_uuid,
+            </if>
+            <if test="role != null">
+                role,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orgUuid != null">
+                #{orgUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="userUuid != null">
+                #{userUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="position != null">
+                #{position,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
+        update organization_user
+        <set>
+            <if test="orgUuid != null">
+                org_uuid = #{orgUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="userUuid != null">
+                user_uuid = #{userUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                role = #{role,jdbcType=TINYINT},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="position != null">
+                position = #{position,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
     update organization_user
     set org_uuid = #{orgUuid,jdbcType=VARCHAR},
       user_uuid = #{userUuid,jdbcType=VARCHAR},
@@ -161,4 +161,14 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+    <!--根据组织uuid和用户uuid获取组织成员-->
+    <select id="selectOrganizationUserByUserUuId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from organization_user
+        where org_uuid=#{orgUuid,jdbcType=VARCHAR}
+        and user_uuid=#{userUuid,jdbcType=VARCHAR}
+        and status &lt;=120
+    </select>
 </mapper>

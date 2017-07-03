@@ -7,59 +7,64 @@ package com.sunny.bugmanage.common.enums;
  * @description:
  */
 public enum ResultEnum {
-	/**
-	 * 成功
-	 */
-	SUCCESS(0, "成功!"),
-	/**
-	 * 账号不存在
-	 */
-	USER_NAME_NOT_EXIST(1,"账号不存在"),
-	/**
-	 * 账号不存在
-	 */
-	POSSWORD_ERROR(2,"密码错误"),
-	/**
-	 *   注册用户异常
-	 */
-	INSERT_APP_USER_ERROR(3,"注册用户异常" ),
-	/**
-	 * 账号存在
-	 */
-	USER_NAME_EXIST(4,"账号已经存在"),
-	
-	/**
-	 * 参数异常
-	 */
-	PARAMETER_ERROR(100,"参数异常!"),
-	/**
-	 * 组织名称存在
-	 */
-	ORG_NAME_EXIST(200,"组织名称存在"),
-	/**
-	 *   组织名称不存在
-	 */
-	ORG_NAME_NOT_EXIST(201,"组织名称不存在"),
-	;
-	private Integer code;
-	private String msg;
+    /**
+     * 成功
+     */
+    SUCCESS(0, "成功!"),
+    /**
+     * 账号不存在
+     */
+    USER_NAME_NOT_EXIST(1, "账号不存在"),
+    /**
+     * 账号不存在
+     */
+    POSSWORD_ERROR(2, "密码错误"),
+    /**
+     * 注册用户异常
+     */
+    INSERT_APP_USER_ERROR(3, "注册用户异常"),
+    /**
+     * 账号存在
+     */
+    USER_NAME_EXIST(4, "账号已经存在"),
 
-	ResultEnum (Integer code, String msg) {
-		this.code = code;
-		this.msg = msg;
-	}
-	public Integer getCode () {
-		return code;
-	}
-	public String getMsg () {
-		return msg;
-	}
+    /**
+     * 参数异常
+     */
+    PARAMETER_ERROR(100, "参数异常!"),
+    /**
+     * 组织名称存在
+     */
+    ORG_NAME_EXIST(200, "组织名称存在"),
+    /**
+     * 组织名称不存在
+     */
+    ORG_NAME_NOT_EXIST(201, "组织名称不存在"),
+    /**
+     * 组织成员已经添加
+     */
+    ORG_USER_EXIST(202, "成员已经添加"),;
+    private Integer code;
+    private String msg;
 
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+    ResultEnum(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }
