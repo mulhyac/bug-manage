@@ -172,4 +172,18 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <!--组织扩展vo-->
+  <resultMap id="OrganizationVo" extends="BaseResultMap" type="com.sunny.bugmanage.org.model.vo.OrganizationVo">
+    
+  </resultMap>
+  <!--根据组织名称获取uuid-->
+  <select id="selectUUIDByName" resultType="java.lang.String">
+      select
+          uuid
+      from
+          organization
+      where
+          name = #{name,jdbcType=VARCHAR}
+  </select>
 </mapper>

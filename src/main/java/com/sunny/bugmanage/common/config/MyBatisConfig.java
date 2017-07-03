@@ -19,11 +19,8 @@ import javax.sql.DataSource;
  * @date 2017-03-31 11:17
  * @description
  */
-//@Configuration
-
 //加上这个注解，使得支持事务
 @EnableTransactionManagement
-/*@ComponentScan(basePackages = "com.sunny.bugmanage", includeFilters = @ComponentScan.Filter(Configuration.class))*/
 public class MyBatisConfig implements TransactionManagementConfigurer {
     @Autowired
     private DataSource dataSource;

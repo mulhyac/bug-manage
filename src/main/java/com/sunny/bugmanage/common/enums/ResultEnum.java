@@ -31,7 +31,16 @@ public enum ResultEnum {
 	/**
 	 * 参数异常
 	 */
-	PARAMETER_ERROR(100,"参数异常!"), ;
+	PARAMETER_ERROR(100,"参数异常!"),
+	/**
+	 * 组织名称存在
+	 */
+	ORG_NAME_EXIST(200,"组织名称存在"),
+	/**
+	 *   组织名称不存在
+	 */
+	ORG_NAME_NOT_EXIST(201,"组织名称不存在"),
+	;
 	private Integer code;
 	private String msg;
 
