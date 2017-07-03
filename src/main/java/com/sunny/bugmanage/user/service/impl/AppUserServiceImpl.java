@@ -1,17 +1,18 @@
 package com.sunny.bugmanage.user.service.impl;
 
+import com.sunny.bugmanage.common.UserContext.BugAppUser;
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.fields.Status;
 import com.sunny.bugmanage.common.result.BaseResult;
-import com.sunny.bugmanage.exception.BugManageException;
+import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.user.form.AppUserForm;
 import com.sunny.bugmanage.user.mapper.*;
 import com.sunny.bugmanage.user.model.*;
 import com.sunny.bugmanage.user.model.vo.AppUserVo;
 import com.sunny.bugmanage.user.service.AppUserService;
-import com.sunny.bugmanage.utils.ResultUtils;
-import com.sunny.bugmanage.utils.StringUtils;
-import com.sunny.bugmanage.utils.UUIDUtills;
+import com.sunny.bugmanage.common.utils.ResultUtils;
+import com.sunny.bugmanage.common.utils.StringUtils;
+import com.sunny.bugmanage.common.utils.UUIDUtills;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,9 @@ public class AppUserServiceImpl implements AppUserService {
             String pw = form.getPassword();
             if (pw.equals(appUser.getPassword())) {
                 //用户信息保存在session中
-                request.getSession().setAttribute("user", appUser);
+            
+                appUser.setSessionId(request.getSession().getId());
+                BugAppUser.setAppUser(request,appUser);
                 return appUser;
             } else {
                 throw new BugManageException(ResultEnum.POSSWORD_ERROR);

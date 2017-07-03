@@ -1,7 +1,7 @@
 package com.sunny.bugmanage.common.form;
 
 import com.sunny.bugmanage.common.valid.SelectGroup;
-import com.sunny.bugmanage.utils.StringUtils;
+import com.sunny.bugmanage.common.utils.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

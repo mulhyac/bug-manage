@@ -8,185 +8,207 @@ import java.util.Date;
 /**
  * Created by sunny on 2017/6/6.
  */
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class AppUserVo extends AppUser {
-	private String userName;
+    private String userName;
 
-	private String nickName;
+    private String nickName;
 
-	private String realName;
+    private String realName;
 
-	private Byte sex;
+    private Byte sex;
 
-	private String mobile;
+    private String mobile;
 
-	private String email;
+    private String email;
 
-	private String iconUrl;
+    private String iconUrl;
 
-	private String summary;
+    private String summary;
 
-	private String dept;
+    private String dept;
 
-	private String position;
+    private String position;
 
-	private Byte age;
+    private Byte age;
 
-	private String address;
+    private String address;
 
-	private Integer likes;
+    private Integer likes;
 
-	private Integer follow;
+    private Integer follow;
 
-	private String pin;
+    private String pin;
 
-	private Date birthdate;
+    private Date birthdate;
 
-	private String city;
+    private String city;
 
-	private String cityId;
+    private String cityId;
+    /**
+     * session缓存时间
+     */
+    private Integer sessionMaxInactiveInterval;
 
-	public String getUserName() {
-		return userName;
-	}
+    private String sessionId;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getNickName() {
-		return nickName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
+    public String getNickName() {
+        return nickName;
+    }
 
-	public String getRealName() {
-		return realName;
-	}
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	public void setRealName(String realName) {
-		this.realName = realName;
-	}
+    public String getRealName() {
+        return realName;
+    }
 
-	public Byte getSex() {
-		return sex;
-	}
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 
-	public void setSex(Byte sex) {
-		this.sex = sex;
-	}
+    public Byte getSex() {
+        return sex;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setSex(Byte sex) {
+        this.sex = sex;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getIconUrl() {
-		return iconUrl;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setIconUrl(String iconUrl) {
-		this.iconUrl = iconUrl;
-	}
+    public String getIconUrl() {
+        return iconUrl;
+    }
 
-	public String getSummary() {
-		return summary;
-	}
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
+    public String getSummary() {
+        return summary;
+    }
 
-	public String getDept() {
-		return dept;
-	}
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
+    public String getDept() {
+        return dept;
+    }
 
-	public String getPosition() {
-		return position;
-	}
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
 
-	public void setPosition(String position) {
-		this.position = position;
-	}
+    public String getPosition() {
+        return position;
+    }
 
-	public Byte getAge() {
-		return age;
-	}
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
-	public void setAge(Byte age) {
-		this.age = age;
-	}
+    public Byte getAge() {
+        return age;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setAge(Byte age) {
+        this.age = age;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public Integer getLikes() {
-		return likes;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setLikes(Integer likes) {
-		this.likes = likes;
-	}
+    public Integer getLikes() {
+        return likes;
+    }
 
-	public Integer getFollow() {
-		return follow;
-	}
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
 
-	public void setFollow(Integer follow) {
-		this.follow = follow;
-	}
+    public Integer getFollow() {
+        return follow;
+    }
 
-	public String getPin() {
-		return pin;
-	}
+    public void setFollow(Integer follow) {
+        this.follow = follow;
+    }
 
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
+    public String getPin() {
+        return pin;
+    }
 
-	public Date getBirthdate() {
-		return birthdate;
-	}
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
 
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
-	}
+    public Date getBirthdate() {
+        return birthdate;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getCityId() {
-		return cityId;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setCityId(String cityId) {
-		this.cityId = cityId;
-	}
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
+    }
+
+    public int getSessionMaxInactiveInterval() {
+        return sessionMaxInactiveInterval == null ? 0 : sessionMaxInactiveInterval;
+    }
+
+    public void setSessionMaxInactiveInterval(Integer sessionMaxInactiveInterval) {
+        this.sessionMaxInactiveInterval = sessionMaxInactiveInterval;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 }

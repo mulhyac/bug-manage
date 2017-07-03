@@ -1,8 +1,8 @@
-package com.sunny.bugmanage.utils;
+package com.sunny.bugmanage.common.utils;
 
 /**
  * @author sunny
- * @className com.sunny.bugmanage.utils.HttpHelperUtils
+ * @className com.sunny.bugmanage.common.utils.HttpHelperUtils
  * @date 2017-06-28 17:25
  * @description:
  */

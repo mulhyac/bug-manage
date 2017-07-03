@@ -1,8 +1,8 @@
 package com.sunny.bugmanage;
 
-import com.sunny.bugmanage.config.CorsConfig;
-import com.sunny.bugmanage.config.MyBatisConfig;
-import com.sunny.bugmanage.config.RedisConfig;
+import com.sunny.bugmanage.common.config.CorsConfig;
+import com.sunny.bugmanage.common.config.MyBatisConfig;
+import com.sunny.bugmanage.common.config.RedisConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

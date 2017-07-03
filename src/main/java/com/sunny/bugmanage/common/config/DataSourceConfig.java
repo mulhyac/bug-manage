@@ -1,4 +1,4 @@
-package com.sunny.bugmanage.config;
+package com.sunny.bugmanage.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,9 +1,9 @@
-package com.sunny.bugmanage.handle;
+package com.sunny.bugmanage.common.handle;
 
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.result.BaseResult;
-import com.sunny.bugmanage.exception.BugManageException;
-import com.sunny.bugmanage.utils.ResultUtils;
+import com.sunny.bugmanage.common.exception.BugManageException;
+import com.sunny.bugmanage.common.utils.ResultUtils;
 import org.apache.ibatis.binding.BindingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -18,7 +18,7 @@ import javax.validation.UnexpectedTypeException;
 
 /**
  * @author sunny
- * @className com.sunny.bugmanage.handle.BugManageHandle
+ * @className com.sunny.bugmanage.common.handle.BugManageHandle
  * @date 2017-06-06 20:33
  * @description:
  */

@@ -1,4 +1,4 @@
-package com.sunny.bugmanage.config;
+package com.sunny.bugmanage.common.config;
 
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;

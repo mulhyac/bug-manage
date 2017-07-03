@@ -1,4 +1,4 @@
-package com.sunny.bugmanage.config;
+package com.sunny.bugmanage.common.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author sunny
- * @className com.sunny.bugmanage.config.RedisConfig
+ * @className com.sunny.bugmanage.common.config.RedisConfig
  * @date 2017-06-19 16:09
  * @description:
  */

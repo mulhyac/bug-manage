@@ -1,4 +1,4 @@
-package com.sunny.bugmanage.utils;
+package com.sunny.bugmanage.common.utils;
 
 import java.util.regex.Pattern;
 
@@ -10,7 +10,7 @@ public class StringUtils {
 	private static final Pattern PATTERN_MOBILE_VALID =Pattern.compile("^1[34578]\\d{9}$");
 
 	private StringUtils() {
-		// Utility class
+		super();
 	}
 
 	/**

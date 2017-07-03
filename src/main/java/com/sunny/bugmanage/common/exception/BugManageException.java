@@ -1,10 +1,10 @@
-package com.sunny.bugmanage.exception;
+package com.sunny.bugmanage.common.exception;
 
 import com.sunny.bugmanage.common.enums.ResultEnum;
 
 /**
  * @author sunny
- * @className com.sunny.bugmanage.exception.BugManageException
+ * @className com.sunny.bugmanage.common.exception.BugManageException
  * @date 2017-06-06 20:29
  * @description:
  */

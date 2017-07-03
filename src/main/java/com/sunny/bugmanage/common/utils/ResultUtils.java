@@ -1,4 +1,4 @@
-package com.sunny.bugmanage.utils;
+package com.sunny.bugmanage.common.utils;
 
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.result.BaseResult;
@@ -8,11 +8,15 @@ import java.util.List;
 
 /**
  * @author sunny
- * @className com.sunny.bugmanage.utils.ResultUtils
+ * @className com.sunny.bugmanage.common.utils.ResultUtils
  * @date 2017-06-06 14:13
  * @description:
  */
 public class ResultUtils {
+    private ResultUtils() {
+        super();
+    }
+
     /**
      * @param resultEnum
      * @return
