@@ -8,17 +8,17 @@ package com.sunny.bugmanage.common.fields;
  */
 public class Status {
 	/**
-	 * appuser删除状态
+	 * 删除
 	 */
-	public static Byte AppUser_Del_Status =127;
+	public static Byte Del_Status =127;
 	/**
-	 * appuser用户冻结
+	 * 冻结
 	 */
-	public static Byte AppUser_Blocking_Status =126;
+	public static Byte Blocking_Status =126;
 	/**
 	 * 用户无用状态
 	 */
-	public static Byte APPUser_Disable_Status=120;
+	public static Byte Disable_Status =120;
 
 	/**
 	 * 组织成员角色--管理员
