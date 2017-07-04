@@ -3,6 +3,7 @@ package com.sunny.bugmanage.org.controller;
 import com.sunny.bugmanage.common.result.BaseResult;
 import com.sunny.bugmanage.common.utils.ResultUtils;
 import com.sunny.bugmanage.common.valid.InsertGroup;
+import com.sunny.bugmanage.common.valid.SelectGroup;
 import com.sunny.bugmanage.org.form.OrgForm;
 import com.sunny.bugmanage.org.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class OrganizationController {
      */
     //@ApiOperation(value = "获取全部组织", notes = "获取全部组织支持模糊查询、分页")
     @GetMapping
-    public BaseResult checkOrgName(OrgForm form) {
+    public BaseResult checkOrgName(@Validated({SelectGroup.class}) OrgForm form) {
         return ResultUtils.success(organizationService.getAllOrg(form));
     }
 

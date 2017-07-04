@@ -4,6 +4,7 @@ import com.sunny.bugmanage.common.model.BaseModel;
 
 public class Organization extends BaseModel<Long> {
 
+    private static final long serialVersionUID = 5103648760787102533L;
     private String name;
 
     private String intro;

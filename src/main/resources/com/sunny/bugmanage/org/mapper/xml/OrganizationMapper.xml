@@ -196,6 +196,7 @@
         name,
         intro,
         logo,
+        status,
         creator,
         create_time
         from
