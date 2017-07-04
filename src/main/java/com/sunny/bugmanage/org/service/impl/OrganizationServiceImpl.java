@@ -1,6 +1,5 @@
 package com.sunny.bugmanage.org.service.impl;
 
-import com.sunny.bugmanage.common.UserContext.BugAppUser;
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.common.fields.Status;
@@ -35,7 +34,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public List<OrganizationVo> getAllOrg(OrgForm form) {
-        form.setStatus(Status.APPUser_Disable_Status);
+        form.setStatus(Status.Disable_Status);
         return organizationMapper.selectAllOrg(form);
     }
 
@@ -53,23 +52,19 @@ public class OrganizationServiceImpl implements OrganizationService {
         if (check.getCode() != 0) {
             throw new BugManageException(check.getCode(), check.getMsg());
         }
-        
         Organization org = new Organization();
         String uuId = UUIDUtills.getUUID();
-        String creatorUUId = BugAppUser.userUUId();
         org.setUuid(uuId);
         org.setName(name);
         org.setIntro(form.getIntro());
-        org.setCreator(creatorUUId);
-        org.setModifier(creatorUUId);
         //创建组织
         organizationMapper.insertSelective(org);
-
         //添加组织成员
         organizationUserService.addOrgUserBySelf(uuId);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void modifierOrg(OrgForm form) {
 
     }
@@ -80,8 +75,15 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void removeOrgByUUID(String uuid) {
-
+        Long id = getOrgByUUID(uuid);
+        if (id != null) {
+            Organization org=new Organization();
+            org.setId(id);
+            org.setStatus(Status.Del_Status);
+            organizationMapper.updateByPrimaryKeySelective(org);
+        }
     }
 
     @Override

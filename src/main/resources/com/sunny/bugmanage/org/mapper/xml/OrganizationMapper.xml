@@ -191,15 +191,15 @@
     <!--查询全部组织-->
     <select id="selectAllOrg" parameterType="com.sunny.bugmanage.org.form.OrgForm" resultMap="OrganizationVo">
         select
-          id,
-          uuid,
-          name,
-          intro,
-          logo,
-          creator,
-          create_time
+        id,
+        uuid,
+        name,
+        intro,
+        logo,
+        creator,
+        create_time
         from
-           organization
+        organization
         where status &lt;=#{status}
         <if test="key!='' and key!=null ">
             <choose>
@@ -220,7 +220,15 @@
            id
          from
             organization
-         where status &lt;=120
+         where status !=127
          and uuid=  #{uuid,jdbcType=VARCHAR}
     </select>
+    
+    <!--根据id修改组织状态-->
+    <update id="updateOrgStatusById">
+        update  organization
+         set status=#{status,jdbcType=TINYINT}
+         WHERE
+            id= #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

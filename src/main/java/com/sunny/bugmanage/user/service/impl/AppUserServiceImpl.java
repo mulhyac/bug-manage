@@ -72,7 +72,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUserVo getAppUserById(Long id) {
-        return appUserMapper.findAppUserVoByPrimaryKey(id, Status.APPUser_Disable_Status);
+        return appUserMapper.findAppUserVoByPrimaryKey(id, Status.Disable_Status);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     //@Cacheable(value = "getAllAPPUser", key = "#form.getKey() + #form.getPageNum()+ form.getPageSize()")hello
     public List<AppUserVo> getAllAPPUser(AppUserForm form) {
-        form.setStatus(Status.APPUser_Disable_Status); //TODO:后期添加用户状态
+        form.setStatus(Status.Disable_Status); //TODO:后期添加用户状态
 
         return appUserMapper.findAllAppUser(form);
     }

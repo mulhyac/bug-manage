@@ -1,7 +1,5 @@
 package com.sunny.bugmanage.sdk.wechat.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2017-06-20 14:09
  * @description:
  */
-@Api(value = "WechatController", description = "微信登录接口")
+//@Api(value = "WechatController", description = "微信登录接口")
 @RestController
 @RequestMapping("/wechat")
 public class WechatController {
 	
-	@ApiOperation(value = "获取code", notes = "获取code码")
+	//@ApiOperation(value = "获取code", notes = "获取code码")
 	@GetMapping("/login")
 	@SuppressWarnings("rawtypes")
 	public String login(HttpServletRequest req, String code) {

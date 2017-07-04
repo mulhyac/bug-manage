@@ -42,7 +42,8 @@ public class BaseModel<ID extends Serializable> implements Serializable {
     }
 
     public String getCreator() {
-        return StringUtils.isBlank(BugAppUser.userUUId()) ? "" : creator;
+
+        return StringUtils.isBlank(creator) ? BugAppUser.userUUId() : creator;
     }
 
     public void setCreator(String creator) {
@@ -58,7 +59,7 @@ public class BaseModel<ID extends Serializable> implements Serializable {
     }
 
     public String getModifier() {
-        return StringUtils.isBlank(BugAppUser.userUUId()) ? "" : modifier;
+        return StringUtils.isBlank(modifier) ? BugAppUser.userUUId() : modifier;
     }
 
     public void setModifier(String modifier) {

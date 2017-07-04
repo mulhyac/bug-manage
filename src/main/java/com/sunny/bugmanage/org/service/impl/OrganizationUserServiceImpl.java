@@ -59,14 +59,11 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         if (StringUtils.isBlank(nickName) || orgId == null) {
             return;
         }
-        form.setName(nickName);
-        String creatorUUId = BugAppUser.userUUId();
         OrganizationUser orgUser = new OrganizationUser();
         BeanUtils.copyProperties(form, orgUser);
-
         orgUser.setPosition(getPositionByRole(role));
-        orgUser.setCreator(creatorUUId);
-        orgUser.setModifier(creatorUUId);
+        orgUser.setName(nickName);
+        
         organizationUserMapper.insertSelective(orgUser);
     }
 
@@ -83,7 +80,8 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
             //if (orgUser.getRole() != form.getRole()) {
             form.setId(orgUser.getId());
             BeanUtils.copyProperties(form, orgUser);
-            organizationUserMapper.updateByPrimaryKey(orgUser);
+            orgUser.setStatus(null);//TODO:强制去除状态防止接口修改人员状态
+            organizationUserMapper.updateByPrimaryKeySelective(orgUser);
             // }
         }
     }

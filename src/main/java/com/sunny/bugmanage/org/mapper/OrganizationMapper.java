@@ -1,5 +1,6 @@
 package com.sunny.bugmanage.org.mapper;
 
+import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.org.form.OrgForm;
 import com.sunny.bugmanage.org.model.Organization;
 import com.sunny.bugmanage.org.model.vo.OrganizationVo;
@@ -37,10 +38,18 @@ public interface OrganizationMapper {
     List<OrganizationVo> selectAllOrg(OrgForm form);
 
     /**
-     * 根据uuid获取组织id
+     * 根据uuid获取组织id  (去除状态=127的组织)
      *
      * @param uuid
      * @return
      */
     Long selectOrgByUUID(@Param("uuid") String uuid);
+
+    /**
+     * 根据id修改组织状态 
+     *
+     * @param id
+     * @param del_status
+     */
+    void updateOrgStatusById(@Param("id") Long id, @Param("status") Byte del_status) throws BugManageException;
 }
