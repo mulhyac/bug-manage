@@ -46,10 +46,9 @@ public interface OrganizationMapper {
     Long selectOrgByUUID(@Param("uuid") String uuid);
 
     /**
-     * 根据id修改组织状态 
-     *
-     * @param id
-     * @param del_status
+     * 根据id修改组织状态 ta
+     *  
+     * @param org
      */
-    void updateOrgStatusById(@Param("id") Long id, @Param("status") Byte del_status) throws BugManageException;
+    void updateOrgById(Organization org) throws BugManageException;
 }

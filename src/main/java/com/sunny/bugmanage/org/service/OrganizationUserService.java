@@ -40,4 +40,10 @@ public interface OrganizationUserService {
      * @throws BugManageException
      */
     void modifierOrgUserByUserUuId(OrgUserForm form) throws BugManageException;
+
+    /**
+     * 根据组织uuid删除组织成员
+     * @param orgUUId
+     */
+    void removeOrgUserByOrgUUId(String orgUUId) throws BugManageException;
 }

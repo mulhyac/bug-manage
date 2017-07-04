@@ -23,4 +23,10 @@ public interface OrganizationUserMapper {
      * @return
      */
     OrganizationUser selectOrganizationUserByUserUuId(@Param("orgUuid") String orgUuId, @Param("userUuid")String userUuId);
+
+    /**
+     * 根据组织的uuid更新组织成员状态
+     * @param orgUser
+     */
+    void updateOrgUserByOrgUUId(OrganizationUser orgUser);
 }

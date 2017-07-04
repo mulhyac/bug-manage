@@ -82,7 +82,9 @@ public class OrganizationServiceImpl implements OrganizationService {
             Organization org=new Organization();
             org.setId(id);
             org.setStatus(Status.Del_Status);
-            organizationMapper.updateByPrimaryKeySelective(org);
+            organizationMapper.updateOrgById(org);
+            //清除组织用户
+            organizationUserService.removeOrgUserByOrgUUId(uuid);
         }
     }
 

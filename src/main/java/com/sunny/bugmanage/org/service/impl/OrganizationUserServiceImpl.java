@@ -63,7 +63,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         BeanUtils.copyProperties(form, orgUser);
         orgUser.setPosition(getPositionByRole(role));
         orgUser.setName(nickName);
-        
+
         organizationUserMapper.insertSelective(orgUser);
     }
 
@@ -84,6 +84,15 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
             organizationUserMapper.updateByPrimaryKeySelective(orgUser);
             // }
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void removeOrgUserByOrgUUId(String orgUUId) throws BugManageException {
+        OrganizationUser orgUser = new OrganizationUser();
+        orgUser.setStatus(Status.Del_Status);
+        orgUser.setOrgUuid(orgUUId);
+        organizationUserMapper.updateOrgUserByOrgUUId(orgUser);
     }
 
     /**

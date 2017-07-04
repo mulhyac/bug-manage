@@ -223,12 +223,21 @@
          where status !=127
          and uuid=  #{uuid,jdbcType=VARCHAR}
     </select>
-    
+
     <!--根据id修改组织状态-->
-    <update id="updateOrgStatusById">
-        update  organization
-         set status=#{status,jdbcType=TINYINT}
-         WHERE
-            id= #{id,jdbcType=BIGINT}
+    <update id="updateOrgById" parameterType="com.sunny.bugmanage.org.model.Organization">
+        update organization
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
     </update>
 </mapper>

@@ -171,4 +171,17 @@
         and user_uuid=#{userUuid,jdbcType=VARCHAR}
         and status &lt;=120
     </select>
+    <!--根据组织uuid修改组织成员状态-->
+    <update id="updateOrgUserByOrgUUId" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
+        update organization_user
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where org_uuid = #{orgUuid,jdbcType=BIGINT}
+    </update>
 </mapper>
