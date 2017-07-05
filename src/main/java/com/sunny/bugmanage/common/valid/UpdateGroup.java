@@ -6,5 +6,5 @@ package com.sunny.bugmanage.common.valid;
  * @date 2017-07-03 16:33
  * @description:
  */
-public class UpdateGroup {
+public interface UpdateGroup {
 }

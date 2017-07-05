@@ -13,6 +13,7 @@ import com.sunny.bugmanage.org.model.Organization;
 import com.sunny.bugmanage.org.model.vo.OrganizationVo;
 import com.sunny.bugmanage.org.service.OrganizationService;
 import com.sunny.bugmanage.org.service.OrganizationUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,7 +80,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void removeOrgByUUID(String uuid) {
         Long id = getOrgByUUID(uuid);
         if (id != null) {
-            Organization org=new Organization();
+            Organization org = new Organization();
             org.setId(id);
             org.setStatus(Status.Del_Status);
             organizationMapper.updateOrgById(org);
@@ -95,6 +96,31 @@ public class OrganizationServiceImpl implements OrganizationService {
             return ResultUtils.success();
         } else {
             return ResultUtils.error(ResultEnum.ORG_NAME_EXIST);
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void modifierOrgByUUId(String uuId, OrgForm form) {
+        String name=form.getName();
+        BaseResult result= checkOrgName(name);
+         //验证名称是否存在
+        if(result.getCode()!=0){
+            throw new BugManageException(result.getCode(),result.getMsg());
+        }
+
+        //TODO:对状态判断超过120的额外处理
+        Long id = getOrgByUUID(uuId);
+        //这里不能修改状态为127>(删除状态)
+        if (id != null) {
+            Organization org = new Organization();
+            BeanUtils.copyProperties(form, org);
+            org.setId(id);
+            Byte open=form.getOpen();
+            if(open!=null){
+                org.setOpen(open==0?false:true);
+            }
+            organizationMapper.updateOrgById(org);
         }
     }
 }
