@@ -27,7 +27,10 @@ public enum ResultEnum {
      * 账号存在
      */
     USER_NAME_EXIST(4, "账号已经存在"),
-
+    /**
+     *   权限不足，请联系管理员
+     */
+    PERMISSION_DENIED(5,"权限不足，请联系管理员"),
     /**
      * 参数异常
      */
@@ -43,7 +46,8 @@ public enum ResultEnum {
     /**
      * 组织成员已经添加
      */
-    ORG_USER_EXIST(202, "成员已经添加"),;
+    ORG_USER_EXIST(202, "成员已经添加"),
+    ;
     private Integer code;
     private String msg;
 

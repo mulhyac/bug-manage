@@ -36,12 +36,14 @@ public interface OrganizationUserService {
     OrganizationUser getOrganizationUserByUserUuId(String orgUuId, String userUuId) throws BugManageException;
 
     /**
-     * 根据用户uuid修改组织成员信息
+     * 根据用户id修改组织成员信息
      *
+     *
+     * @param id
      * @param form
      * @throws BugManageException
      */
-    void modifierOrgUserByUserUuId(OrgUserForm form) throws BugManageException;
+    void modifierOrgUserByUserUuId(Long id, OrgUserForm form) throws BugManageException;
 
     /**
      * 根据组织uuid删除组织成员

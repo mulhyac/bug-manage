@@ -47,14 +47,14 @@ public class OrganizationUserController {
     }
 
     /**
-     * 修改组织成员
+     * 根据id修改组织成员
      *
      * @param form
      * @return
      */
-    @PostMapping
-    public BaseResult modifierOrgUser(@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
-        organizationUserService.modifierOrgUserByUserUuId(form);
+    @PostMapping("/{id:.+}")
+    public BaseResult modifierOrgUser(@PathVariable("id") Long id,@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
+        organizationUserService.modifierOrgUserByUserUuId(id,form);
         return ResultUtils.success("修改组织成员成功");
     }
 }

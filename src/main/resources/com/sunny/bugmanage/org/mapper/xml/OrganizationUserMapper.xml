@@ -114,12 +114,12 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
         update organization_user
         <set>
-            <if test="orgUuid != null">
+            <!--<if test="orgUuid != null">
                 org_uuid = #{orgUuid,jdbcType=VARCHAR},
             </if>
             <if test="userUuid != null">
                 user_uuid = #{userUuid,jdbcType=VARCHAR},
-            </if>
+            </if>-->
             <if test="role != null">
                 role = #{role,jdbcType=TINYINT},
             </if>
@@ -132,12 +132,12 @@
             <if test="position != null">
                 position = #{position,jdbcType=VARCHAR},
             </if>
-            <if test="creator != null">
+            <!--<if test="creator != null">
                 creator = #{creator,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
-            </if>
+            </if>-->
             <if test="modifier != null">
                 modifier = #{modifier,jdbcType=VARCHAR},
             </if>
@@ -191,6 +191,7 @@
     <!--根据组织uuid查看组织成员-->
     <select id="selectOrgUserByOrgUUId" parameterType="com.sunny.bugmanage.org.form.OrgUserForm" resultMap="OrgUserVo">
         select
+        a.id,
         a.org_uuid,
         a.user_uuid,
         a.role,
@@ -223,5 +224,16 @@
            organization_user
           WHERE org_uuid= #{orgUuid,jdbcType=BIGINT}
           AND status &lt;=120
+    </select>
+
+    <!--根据id和userUuid获取人员角色-->
+    <select id="selectRoleByIdAndUserUuId" resultType="java.lang.Byte">
+        SELECT
+          IF(count(role)=0,0,role) role
+        FROM
+          organization_user
+        where id=#{id,jdbcType=BIGINT}
+        AND user_uuid=#{userUuid,jdbcType=VARCHAR}
+        AND status &lt;=120
     </select>
 </mapper>

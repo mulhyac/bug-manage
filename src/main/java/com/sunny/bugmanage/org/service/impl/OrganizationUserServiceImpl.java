@@ -1,7 +1,9 @@
 package com.sunny.bugmanage.org.service.impl;
 
 import com.sunny.bugmanage.common.UserContext.BugAppUser;
+import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.exception.BugManageException;
+import com.sunny.bugmanage.common.fields.Role;
 import com.sunny.bugmanage.common.fields.Status;
 import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.org.form.OrgUserForm;
@@ -56,7 +58,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         if (user != null) {
             //存在的用户修改
             form.setId(user.getId());
-            modifierOrgUserByUserUuId(form);
+            modifierOrgUserByUserUuId(user.getId(), form);
         }
         //验证组织uuid和用户uuid
         Long orgId = organizationService.getOrgByUUID(orgUuid);
@@ -79,16 +81,17 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void modifierOrgUserByUserUuId(OrgUserForm form) throws BugManageException {
-        OrganizationUser orgUser = getOrganizationUserByUserUuId(form.getOrgUuid(), form.getUserUuid());
-        if (orgUser != null) {
-            //if (orgUser.getRole() != form.getRole()) {
-            form.setId(orgUser.getId());
-            BeanUtils.copyProperties(form, orgUser);
-            //orgUser.setStatus(null);//TODO:强制去除状态防止接口修改人员状态
-            organizationUserMapper.updateByPrimaryKeySelective(orgUser);
-            // }
+    public void modifierOrgUserByUserUuId(Long id, OrgUserForm form) throws BugManageException {
+        Byte role = form.getRole();
+        if (role != null && Role.ORG_USER_MANAGE >= organizationUserMapper.selectRoleByIdAndUserUuId(id, BugAppUser.userUUId())) {
+            //禁止修改角色，这个是项目管理员干的事情
+            throw new BugManageException(ResultEnum.PERMISSION_DENIED);
         }
+        //判断成员状态
+        form.setId(id);
+        OrganizationUser orgUser = new OrganizationUser();
+        BeanUtils.copyProperties(form, orgUser);
+        organizationUserMapper.updateByPrimaryKeySelective(orgUser);
     }
 
     @Override

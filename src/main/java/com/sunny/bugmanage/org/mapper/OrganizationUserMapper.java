@@ -51,4 +51,12 @@ public interface OrganizationUserMapper {
      * @return
      */
     int selectOrgUserCountByOrgUuId(String orgUuId);
+
+    /**
+     * 根据id和userUuid获取人员角色(永远不会返回null，默认返回0)
+     * @param id
+     * @param userUuId
+     * @return
+     */
+    Byte selectRoleByIdAndUserUuId(@Param("id") Long id, @Param("userUuid")String userUuId);
 }
