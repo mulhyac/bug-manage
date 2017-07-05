@@ -58,4 +58,12 @@ public interface OrganizationService {
      * @return
      */
     BaseResult checkOrgName(String name);
+
+    /**
+     * 根据组织uuid修改组织
+     * 
+     * @param uuId
+     * @param form
+     */
+    void modifierOrgByUUId(String uuId, OrgForm form);
 }

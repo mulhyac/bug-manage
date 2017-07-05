@@ -4,6 +4,7 @@ import com.sunny.bugmanage.common.result.BaseResult;
 import com.sunny.bugmanage.common.utils.ResultUtils;
 import com.sunny.bugmanage.common.valid.InsertGroup;
 import com.sunny.bugmanage.common.valid.SelectGroup;
+import com.sunny.bugmanage.common.valid.UpdateGroup;
 import com.sunny.bugmanage.org.form.OrgForm;
 import com.sunny.bugmanage.org.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,4 +74,16 @@ public class OrganizationController {
         return ResultUtils.success("删除组织成功");
     }
 
+    /**
+     * 根据组织uuid修改组织
+     *
+     * @param uuId
+     * @param form
+     * @return
+     */
+    @PostMapping("/{uuId:.+}")
+    public BaseResult modifierOrgByUUId(@PathVariable("uuId") String uuId, @RequestBody @Validated({UpdateGroup.class}) OrgForm form) {
+        organizationService.modifierOrgByUUId(uuId, form);
+        return ResultUtils.success("修改组织成功");
+    }
 }

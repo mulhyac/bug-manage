@@ -2,6 +2,7 @@ package com.sunny.bugmanage.common.form;
 
 import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.common.valid.SelectGroup;
+import com.sunny.bugmanage.common.valid.UpdateGroup;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -31,7 +32,8 @@ public class BaseForm<T extends Serializable> implements Serializable {
     @NotNull(message = "请输入当前第几页", groups = {SelectGroup.class})
     @Min(value = 1, message = "当前页最小值是1", groups = {SelectGroup.class})
     private Integer pageNum;
-
+    //TODO:修改的时候禁止修改状态为127(删除状态)
+    @Max(value = 126, message = "状态最大是126", groups = {UpdateGroup.class})
     private Byte status;
     /**
      * 模糊查询使用的key

@@ -229,8 +229,23 @@
     <update id="updateOrgById" parameterType="com.sunny.bugmanage.org.model.Organization">
         update organization
         <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="intro != null">
+                intro = #{intro,jdbcType=VARCHAR},
+            </if>
+            <if test="open != null">
+                open = #{open,jdbcType=BIT},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
             <if test="status != null">
                 status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
             </if>
             <if test="modifier != null">
                 modifier = #{modifier,jdbcType=VARCHAR},
