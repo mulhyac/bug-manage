@@ -1,6 +1,5 @@
 package com.sunny.bugmanage.user.model.vo;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sunny.bugmanage.user.model.AppUser;
 
 import java.util.Date;
@@ -8,7 +7,6 @@ import java.util.Date;
 /**
  * Created by sunny on 2017/6/6.
  */
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class AppUserVo extends AppUser {
     private String userName;
 
