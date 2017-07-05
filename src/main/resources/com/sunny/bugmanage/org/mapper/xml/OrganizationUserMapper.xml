@@ -161,7 +161,13 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
+      <!--组织用户扩展类-->
+    <resultMap id="OrgUserVo" extends="BaseResultMap" type="com.sunny.bugmanage.org.model.vo.OrganizationUserVo">
+          <!--<result column="logo" property="logo"-->
+    </resultMap>
+    
+    
+    
     <!--根据组织uuid和用户uuid获取组织成员-->
     <select id="selectOrganizationUserByUserUuId" resultMap="BaseResultMap">
         select
@@ -184,4 +190,8 @@
         </set>
         where org_uuid = #{orgUuid,jdbcType=BIGINT}
     </update>
+    <!--根据组织uuid查看组织成员-->
+    <select id="selectOrgUserByOrgUUId" parameterType="com.sunny.bugmanage.org.form.OrgUserForm" resultMap="OrgUserVo">
+        
+    </select>
 </mapper>

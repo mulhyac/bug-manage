@@ -7,6 +7,7 @@ import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.org.form.OrgUserForm;
 import com.sunny.bugmanage.org.mapper.OrganizationUserMapper;
 import com.sunny.bugmanage.org.model.OrganizationUser;
+import com.sunny.bugmanage.org.model.vo.OrganizationUserVo;
 import com.sunny.bugmanage.org.service.OrganizationService;
 import com.sunny.bugmanage.org.service.OrganizationUserService;
 import com.sunny.bugmanage.user.service.AppUserService;
@@ -14,6 +15,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author sunny
@@ -93,6 +98,21 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         orgUser.setStatus(Status.Del_Status);
         orgUser.setOrgUuid(orgUUId);
         organizationUserMapper.updateOrgUserByOrgUUId(orgUser);
+    }
+
+    @Override
+    public Map<String, Object> getOrgUserByOrgUUId(String orgUuId, OrgUserForm form) {
+        form.setOrgUuid(orgUuId);
+        List<OrganizationUserVo> orgUser = organizationUserMapper.selectOrgUserByOrgUUId(form);
+        Map<String, Object> map = new HashMap();
+        map.put("orgUser", orgUser);
+        map.put("count", getOrgUserCountByOrgUuId(orgUuId));
+        return map;
+    }
+
+    @Override
+    public int getOrgUserCountByOrgUuId(String orgUuId) {
+        return organizationUserMapper.selectOrgUserCountByOrgUuId(orgUuId);
     }
 
     /**

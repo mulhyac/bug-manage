@@ -5,6 +5,8 @@ import java.util.Date;
 public class AppUserExtend {
     private Long userId;
 
+    private String userUuid;
+
     private String userName;
 
     private String nickName;
@@ -49,6 +51,14 @@ public class AppUserExtend {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserUuid() {
+        return userUuid;
+    }
+
+    public void setUserUuid(String userUuid) {
+        this.userUuid = userUuid == null ? null : userUuid.trim();
     }
 
     public String getUserName() {

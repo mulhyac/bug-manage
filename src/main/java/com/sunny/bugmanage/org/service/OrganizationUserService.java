@@ -4,6 +4,8 @@ import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.org.form.OrgUserForm;
 import com.sunny.bugmanage.org.model.OrganizationUser;
 
+import java.util.Map;
+
 /**
  * @author sunny
  * @className com.sunny.bugmanage.org.service.OrganizationUserService
@@ -46,4 +48,19 @@ public interface OrganizationUserService {
      * @param orgUUId
      */
     void removeOrgUserByOrgUUId(String orgUUId) throws BugManageException;
+
+    /**
+     * 根据组织uuid获取组织全部成员
+     * @param uuId
+     * @param form
+     * @return
+     */
+    Map<String ,Object> getOrgUserByOrgUUId(String uuId, OrgUserForm form);  
+
+    /**
+     * 根据组织uuid获取组织成员总数
+     * @param orgUuId
+     * @return
+     */
+    int getOrgUserCountByOrgUuId(String orgUuId);
 }

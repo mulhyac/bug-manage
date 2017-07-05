@@ -76,6 +76,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
+    
     public AppUserVo addAppUser(HttpServletRequest request, AppUserForm form) {
         String userName = form.getUserName();
         Long id = getAppUserIdByUserName(userName);
@@ -116,7 +117,7 @@ public class AppUserServiceImpl implements AppUserService {
         appUserExtend.setCityId(cityId == null ? "330100" : cityId);
         appUserExtend.setIp(ip == null ? "127.0.0.1" : ip);
         appUserExtend.setUserId(id);
-
+        appUserExtend.setUserUuid(appUser.getUuid());
         String userName = form.getUserName();
         if (StringUtils.isEmail(userName)) {
             AppUserByEmail email = new AppUserByEmail();
