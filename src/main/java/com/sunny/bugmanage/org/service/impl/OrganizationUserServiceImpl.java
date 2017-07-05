@@ -80,7 +80,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
             //if (orgUser.getRole() != form.getRole()) {
             form.setId(orgUser.getId());
             BeanUtils.copyProperties(form, orgUser);
-            orgUser.setStatus(null);//TODO:强制去除状态防止接口修改人员状态
+            //orgUser.setStatus(null);//TODO:强制去除状态防止接口修改人员状态
             organizationUserMapper.updateByPrimaryKeySelective(orgUser);
             // }
         }
