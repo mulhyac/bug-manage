@@ -232,7 +232,7 @@
         b.user_id
         from app_user a left join app_user_extend b on a.id=b.user_id
         where a.status &lt;=#{status}
-        <if test="key!='' and key!=null ">
+        <if test="key!='' and key!=null">
             <choose>
                 <when test="funzzy == true">
                     AND b.user_name LIKE CONCAT('%',#{key,jdbcType=VARCHAR,javaType=java.lang.String},'%')

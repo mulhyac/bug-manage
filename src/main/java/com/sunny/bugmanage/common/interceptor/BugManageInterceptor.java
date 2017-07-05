@@ -32,7 +32,7 @@ public class BugManageInterceptor implements HandlerInterceptor {
         }
        
         String sessionId = session.getId();
-
+        
         if (isInterceptor(path) && !sessionId.equals(BugAppUser.sessionId())) {
             res.setContentType("application/json; charset=utf-8");
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
