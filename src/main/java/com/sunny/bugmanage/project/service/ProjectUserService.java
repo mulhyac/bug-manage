@@ -23,4 +23,12 @@ public interface ProjectUserService {
      * @throws BugManageException
      */
     void addProjectUserBySelf(String proUuId) throws BugManageException;
+
+    /**
+     * 根据项目uuid获取人员总数
+     * @param proUuId
+     * @param name
+     * @return
+     */
+    Integer getProUserCountByProUuId(String proUuId,String name);
 }

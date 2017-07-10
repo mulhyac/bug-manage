@@ -1,6 +1,7 @@
 package com.sunny.bugmanage.project.service.impl;
 
 import com.sunny.bugmanage.common.UserContext.BugAppUser;
+import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.common.fields.Role;
 import com.sunny.bugmanage.common.fields.Status;
@@ -8,6 +9,7 @@ import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.project.form.ProjectUserForm;
 import com.sunny.bugmanage.project.mapper.ProjectUserMapper;
 import com.sunny.bugmanage.project.model.ProjectUser;
+import com.sunny.bugmanage.project.service.ProjectService;
 import com.sunny.bugmanage.project.service.ProjectUserService;
 import com.sunny.bugmanage.user.service.AppUserService;
 import org.springframework.beans.BeanUtils;
@@ -27,18 +29,27 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     private ProjectUserMapper projectUserMapper;
     @Autowired
     private AppUserService appUserService;
+    @Autowired
+    private ProjectService projectService;
     //@Autowired
     // private OrganizationService organizationService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void addProjectUser(ProjectUserForm form) {
-        //Role.getPositionByRole(role);
         String userUuid = form.getUserUuid();
+        String proUuid = form.getProUuid();
 
+        ProjectUser oldUser = projectUserMapper.selectProjectUserByProUuIdAndUserUuId(proUuid, userUuid);
+        if (oldUser != null) {
+            return;
+        }
         String nickName = appUserService.getAppUserNickNameByUuid(userUuid);
         if (StringUtils.isBlank(nickName)) {
             return;
+        }
+        if (getProUserCountByProUuId(proUuid, null) > projectService.getPeopleLimitByProUuId(proUuid)) {
+            throw new BugManageException(ResultEnum.PRO_USER_EXCEED_LIMIT);
         }
         ProjectUser projectUser = new ProjectUser();
         BeanUtils.copyProperties(form, projectUser);
@@ -58,4 +69,8 @@ public class ProjectUserServiceImpl implements ProjectUserService {
         addProjectUser(form);
     }
 
+    @Override
+    public Integer getProUserCountByProUuId(String proUuId, String name) {
+        return projectUserMapper.selectProUserCountByProUuId(proUuId, name);
+    }
 }

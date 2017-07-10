@@ -52,9 +52,13 @@ public enum ResultEnum {
      */
     ORG_USER_EXCEED_LIMIT(202, "组织成员人员达到上限"),
     /**
+     * 组织项目个数达到上限
+     */
+    ORG_PRO_EXCEED_LIMIT(203,"组织项目个数达到上限"),
+    /**
      * 项目成员达到上限
      */
-    PRO_USER_EXCEED_LIMIT(300, "组织成员人员达到上限"),
+    PRO_USER_EXCEED_LIMIT(300, "项目成员达到上限"),
     ;
     private Integer code;
     private String msg;

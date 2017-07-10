@@ -21,4 +21,11 @@ public interface ProjectService {
      * @return
      */
     Integer getProCountByOrgUuId(String orgUuId);
+
+    /***
+     * 根据项目uuid获取项目人员限制
+     * @param proUuId
+     * @return
+     */
+    Integer getPeopleLimitByProUuId(String proUuId);
 }

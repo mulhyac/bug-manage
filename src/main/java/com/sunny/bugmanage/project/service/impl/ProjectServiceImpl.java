@@ -35,7 +35,7 @@ public class ProjectServiceImpl implements ProjectService {
         String orgUuid = form.getOrgUuid();
         //organizationService.getOrgProLimitByUUID(orgUuid);
         if (organizationService.getOrgProLimitByUUID(orgUuid) < getProCountByOrgUuId(orgUuid)) {
-           throw new BugManageException(ResultEnum.PRO_USER_EXCEED_LIMIT);
+           throw new BugManageException(ResultEnum.ORG_PRO_EXCEED_LIMIT);
         }
 
         Project project = new Project();
@@ -51,5 +51,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Integer getProCountByOrgUuId(String orgUuId) {
         return projectMapper.selectProCountByOrgUuId(orgUuId);
+    }
+
+    @Override
+    public Integer getPeopleLimitByProUuId(String proUuId) {
+        return projectMapper.selectPeopleLimitByProUuId(proUuId);
     }
 }

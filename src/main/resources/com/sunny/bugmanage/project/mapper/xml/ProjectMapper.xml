@@ -203,5 +203,16 @@
       count(1)
     from project
     where  org_uuid = #{orgUuid,jdbcType=VARCHAR}
+     and status !=127;
+  </select>
+
+  <!--根据项目uuid获取人员上限-->
+  <select id="selectPeopleLimitByProUuId" resultType="java.lang.Integer">
+        SELECT
+          if(count(1)=0,0,people_limit)people_limit
+        FROM
+         project
+         where uuid= #{uuid,jdbcType=VARCHAR}
+         and status !=127;
   </select>
 </mapper>

@@ -7,10 +7,7 @@ import com.sunny.bugmanage.project.form.ProjectForm;
 import com.sunny.bugmanage.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author sunny
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description:
  */
 @RestController
+@RequestMapping("/project")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
@@ -28,9 +26,8 @@ public class ProjectController {
      * @param form
      * @return
      */
-    @PutMapping("/{orgUuId:.+}/project")
-    public BaseResult addProject(@PathVariable("orgUuId")String orgUuId,@RequestBody @Validated({InsertGroup.class}) ProjectForm form) {
-        form.setOrgUuid(orgUuId);
+    @PutMapping
+    public BaseResult addProject(@RequestBody @Validated({InsertGroup.class}) ProjectForm form) {
         projectService.addProject(form);
         return ResultUtils.success("创建项目成功");
     }

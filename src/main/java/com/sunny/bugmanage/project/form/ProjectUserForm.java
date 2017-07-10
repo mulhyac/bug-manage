@@ -1,6 +1,9 @@
 package com.sunny.bugmanage.project.form;
 
 import com.sunny.bugmanage.common.form.BaseForm;
+import com.sunny.bugmanage.common.valid.InsertGroup;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author sunny
@@ -12,7 +15,8 @@ public class ProjectUserForm extends BaseForm<String> {
     private static final long serialVersionUID = 8949893043227739063L;
 
     private String proUuid;
-
+    
+    @NotNull(message = "请输要添加的人员", groups = {InsertGroup.class})
     private String userUuid;
 
     private Byte role;

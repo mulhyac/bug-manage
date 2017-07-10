@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 public class ProjectUserController {
     @Autowired
     private ProjectUserService projectUserService;
-    //添加成员
 
     /**
      * 添加成员
@@ -29,7 +28,7 @@ public class ProjectUserController {
      * @return
      */
     @PutMapping("/{proUuId:.+}/user")
-    public BaseResult addProjectUser(@PathVariable("uuId") String proUuId, @RequestBody @Validated({InsertGroup.class}) ProjectUserForm form) {
+    public BaseResult addProjectUser(@PathVariable("proUuId") String proUuId, @RequestBody @Validated({InsertGroup.class}) ProjectUserForm form) {
         form.setProUuid(proUuId);
         projectUserService.addProjectUser(form);
         return ResultUtils.success("添加项目成员成功");

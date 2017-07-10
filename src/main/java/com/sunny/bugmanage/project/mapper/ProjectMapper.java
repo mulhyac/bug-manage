@@ -2,6 +2,7 @@ package com.sunny.bugmanage.project.mapper;
 
 import com.sunny.bugmanage.common.mapper.BaseMapper;
 import com.sunny.bugmanage.project.model.Project;
+import org.apache.ibatis.annotations.Param;
 
 public interface ProjectMapper extends BaseMapper<Project, Long> {
     /**
@@ -10,5 +11,12 @@ public interface ProjectMapper extends BaseMapper<Project, Long> {
      * @param orgUuId
      * @return
      */
-    Integer selectProCountByOrgUuId(String orgUuId);
+    Integer selectProCountByOrgUuId(@Param("orgUuid") String orgUuId);
+
+    /**
+     *  根据项目uuid获取人员上限
+     * @param proUuId
+     * @return
+     */
+    Integer selectPeopleLimitByProUuId(@Param("uuid") String proUuId);
 }
