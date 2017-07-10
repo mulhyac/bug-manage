@@ -174,7 +174,7 @@
         from organization_user
         where org_uuid=#{orgUuid,jdbcType=VARCHAR}
         and user_uuid=#{userUuid,jdbcType=VARCHAR}
-        and status &lt;=120
+        and status &lt;=127
     </select>
     <!--根据组织uuid修改组织成员状态-->
     <update id="updateOrgUserByOrgUUId" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
@@ -209,7 +209,7 @@
         organization_user a left join app_user_extend b on
         a.user_uuid = b.user_uuid
         where a.org_uuid=#{orgUuid,jdbcType=BIGINT}
-        and a.status &lt;=120
+        and a.status &lt;=127
         <if test="key!='' and key!=null">
             <choose>
                 <when test="funzzy == true">
@@ -230,7 +230,7 @@
          FROM
            organization_user
           WHERE org_uuid= #{orgUuid,jdbcType=BIGINT}
-          AND status &lt;=120
+          AND status &lt;=127
     </select>
 
     <!--根据组织uuid和userUuid获取人员角色-->
@@ -241,6 +241,6 @@
           organization_user
         where org_uuid= #{orgUuid,jdbcType=BIGINT}
         AND user_uuid=#{userUuid,jdbcType=VARCHAR}
-        AND status &lt;=120
+        AND status &lt;=127
     </select>
 </mapper>

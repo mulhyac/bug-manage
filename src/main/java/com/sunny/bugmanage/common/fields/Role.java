@@ -14,4 +14,9 @@ public class Role {
      * 组织成员---管理员
      */
     public static Byte ORG_USER_MANAGE=30;
+
+    /**
+     *  删除的最小权限
+     */
+    public static Byte DEL_MIN_ROLE=25;
 }

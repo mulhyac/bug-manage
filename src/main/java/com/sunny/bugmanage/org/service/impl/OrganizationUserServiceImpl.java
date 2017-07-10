@@ -128,13 +128,13 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
     public void removeOrgUserById(String orgUuId, String userUuId) {
         Byte currentRole = getRoleByIdAndUserUuId(orgUuId, BugAppUser.userUUId());
         Byte orgUserRole = getRoleByIdAndUserUuId(orgUuId, userUuId);
-        if (Role.ORG_USER_MANAGE >= currentRole || orgUserRole <= orgUserRole) { //权限校验
+        if (Role.DEL_MIN_ROLE >= currentRole || currentRole <= orgUserRole) {
             throw new BugManageException(ResultEnum.PERMISSION_DENIED);
         }
         OrganizationUser orgUser = new OrganizationUser();
         orgUser.setStatus(Status.Del_Status);
         orgUser.setOrgUuid(orgUuId);
-        orgUser.setOrgUuid(userUuId);
+        orgUser.setUserUuid(userUuId);
         organizationUserMapper.updateOrgUserByOrgUUId(orgUser);
     }
 
