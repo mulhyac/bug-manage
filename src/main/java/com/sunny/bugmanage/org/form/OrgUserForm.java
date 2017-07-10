@@ -19,7 +19,7 @@ public class OrgUserForm extends BaseForm<Long> {
     /**
      * 组织uuid
      */
-    @NotNull(message = "请输入组织uuid", groups = {InsertGroup.class,UpdateGroup.class})
+    @NotNull(message = "请输入组织uuid", groups = {InsertGroup.class/*,UpdateGroup.class*/})
     private String orgUuid;
     /**
      * 用户uuid
@@ -67,7 +67,7 @@ public class OrgUserForm extends BaseForm<Long> {
     }
 
     public Byte getRole() {
-        return role == null ? 1 : role;
+        return role;
     }
 
     public void setRole(Byte role) {

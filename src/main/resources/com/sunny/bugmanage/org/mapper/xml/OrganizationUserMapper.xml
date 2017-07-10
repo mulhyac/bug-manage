@@ -146,7 +146,7 @@
             </if>
         </set>
         where user_uuid = #{userUuid,jdbcType=BIGINT}
-        and  org_uuid = #{orgUuid,jdbcType=VARCHAR}
+        and org_uuid = #{orgUuid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
     update organization_user
@@ -186,8 +186,14 @@
             <if test="modifier != null">
                 modifier = #{modifier,jdbcType=VARCHAR},
             </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
         </set>
         where org_uuid = #{orgUuid,jdbcType=BIGINT}
+        <if test="orgUuid !=null and orgUuid != '' ">
+            and user_uuid = #{userUuid,jdbcType=VARCHAR}
+        </if>
     </update>
     <!--根据组织uuid查看组织成员-->
     <select id="selectOrgUserByOrgUUId" parameterType="com.sunny.bugmanage.org.form.OrgUserForm" resultMap="OrgUserVo">

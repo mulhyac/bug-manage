@@ -68,10 +68,11 @@ public interface OrganizationUserService {
     int getOrgUserCountByOrgUuId(String orgUuId);
 
     /**
-     *根据组织成员id删除人员
-     * @param id
+     *根据组织uuid和成员uuid删除组织成员
+     * @param orgUuId
+     * @param userUuId
      */
-    void removeOrgUserById(Long id);
+    void removeOrgUserById(String orgUuId, String userUuId);
 
     /**
      * 根据组织uuiid和userUuid获取人员角色(永远不会返回null，默认返回0)

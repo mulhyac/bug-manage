@@ -3,6 +3,7 @@ package com.sunny.bugmanage.org.service.impl;
 import com.sunny.bugmanage.common.UserContext.BugAppUser;
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.exception.BugManageException;
+import com.sunny.bugmanage.common.fields.Role;
 import com.sunny.bugmanage.common.fields.Status;
 import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.org.form.OrgUserForm;
@@ -87,7 +88,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
          */
         Byte currentRole = getRoleByIdAndUserUuId(form.getOrgUuid(), BugAppUser.userUUId());
         Byte orgUserRole = getRoleByIdAndUserUuId(form.getOrgUuid(), userUuId);
-        if ((currentRole < orgUserRole) && role != null) {
+        if ((role != null && currentRole <= orgUserRole)) {
             //禁止修改角色，这个是项目管理员干的事情
             throw new BugManageException(ResultEnum.PERMISSION_DENIED);
         }
@@ -124,9 +125,17 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void removeOrgUserById(Long id) {
-
+    public void removeOrgUserById(String orgUuId, String userUuId) {
+        Byte currentRole = getRoleByIdAndUserUuId(orgUuId, BugAppUser.userUUId());
+        Byte orgUserRole = getRoleByIdAndUserUuId(orgUuId, userUuId);
+        if (Role.ORG_USER_MANAGE >= currentRole || orgUserRole <= orgUserRole) { //权限校验
+            throw new BugManageException(ResultEnum.PERMISSION_DENIED);
+        }
+        OrganizationUser orgUser = new OrganizationUser();
+        orgUser.setStatus(Status.Del_Status);
+        orgUser.setOrgUuid(orgUuId);
+        orgUser.setOrgUuid(userUuId);
+        organizationUserMapper.updateOrgUserByOrgUUId(orgUser);
     }
 
     @Override

@@ -52,20 +52,23 @@ public class OrganizationUserController {
      * @param form
      * @return
      */
-    @PostMapping("/{userUuId:.+}")
-    public BaseResult modifierOrgUser(@PathVariable("userUuId") String userUuId,@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
+    @PostMapping("/{orgUuId:.+}/{userUuId:.+}")
+    public BaseResult modifierOrgUser(@PathVariable("orgUuId") String orgUuId,@PathVariable("userUuId") String userUuId,@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
+        form.setOrgUuid(orgUuId);
         organizationUserService.modifierOrgUserByUserUuId(userUuId,form);
         return ResultUtils.success("修改组织成员成功");
     }
+
     /**
-     * 根据组织成员id删除人员
+     * 根据组织uuid和成员uuid删除组织成员
      *
-     * @param id
+     *
+     * @param userUuId
      * @return
      */
-    @DeleteMapping("/{id:.+}")
-    public BaseResult removeOrgUserById(@PathVariable("id") Long id) {
-        organizationUserService.removeOrgUserById(id);
-        return ResultUtils.success("删除组织成功");
+    @DeleteMapping("/{orgUuId:.+}/{userUuId:.+}")
+    public BaseResult removeOrgUserById(@PathVariable("orgUuId") String orgUuId,@PathVariable("userUuId") String userUuId) {
+        organizationUserService.removeOrgUserById(orgUuId,userUuId);
+        return ResultUtils.success("删除组织成员成功");
     }
 }
