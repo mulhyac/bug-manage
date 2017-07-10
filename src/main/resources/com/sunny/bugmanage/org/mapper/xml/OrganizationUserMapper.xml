@@ -145,7 +145,8 @@
                 modify_time = #{modifyTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where user_uuid = #{userUuid,jdbcType=BIGINT}
+        and  org_uuid = #{orgUuid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.sunny.bugmanage.org.model.OrganizationUser">
     update organization_user
@@ -226,13 +227,13 @@
           AND status &lt;=120
     </select>
 
-    <!--根据id和userUuid获取人员角色-->
+    <!--根据组织uuid和userUuid获取人员角色-->
     <select id="selectRoleByIdAndUserUuId" resultType="java.lang.Byte">
         SELECT
           IF(count(role)=0,0,role) role
         FROM
           organization_user
-        where id=#{id,jdbcType=BIGINT}
+        where org_uuid= #{orgUuid,jdbcType=BIGINT}
         AND user_uuid=#{userUuid,jdbcType=VARCHAR}
         AND status &lt;=120
     </select>

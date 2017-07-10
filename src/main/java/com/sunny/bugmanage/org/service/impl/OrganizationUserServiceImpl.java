@@ -3,7 +3,6 @@ package com.sunny.bugmanage.org.service.impl;
 import com.sunny.bugmanage.common.UserContext.BugAppUser;
 import com.sunny.bugmanage.common.enums.ResultEnum;
 import com.sunny.bugmanage.common.exception.BugManageException;
-import com.sunny.bugmanage.common.fields.Role;
 import com.sunny.bugmanage.common.fields.Status;
 import com.sunny.bugmanage.common.utils.StringUtils;
 import com.sunny.bugmanage.org.form.OrgUserForm;
@@ -57,8 +56,8 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         OrganizationUser user = getOrganizationUserByUserUuId(orgUuid, userUuid);
         if (user != null) {
             //存在的用户修改
-            form.setId(user.getId());
-            modifierOrgUserByUserUuId(user.getId(), form);
+            //form.setId(user.getId());
+            modifierOrgUserByUserUuId(orgUuid, form);
         }
         //验证组织uuid和用户uuid
         Long orgId = organizationService.getOrgByUUID(orgUuid);
@@ -81,14 +80,20 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void modifierOrgUserByUserUuId(Long id, OrgUserForm form) throws BugManageException {
+    public void modifierOrgUserByUserUuId(String userUuId, OrgUserForm form) throws BugManageException {
         Byte role = form.getRole();
-        if (role != null && Role.ORG_USER_MANAGE >= organizationUserMapper.selectRoleByIdAndUserUuId(id, BugAppUser.userUUId())) {
+        /**
+         * 管理员修改自己的权限也应该在这个接口禁止
+         */
+        Byte currentRole = getRoleByIdAndUserUuId(form.getOrgUuid(), BugAppUser.userUUId());
+        Byte orgUserRole = getRoleByIdAndUserUuId(form.getOrgUuid(), userUuId);
+        if ((currentRole < orgUserRole) && role != null) {
             //禁止修改角色，这个是项目管理员干的事情
             throw new BugManageException(ResultEnum.PERMISSION_DENIED);
         }
         //判断成员状态
-        form.setId(id);
+        // form.setId(id);
+        form.setUserUuid(userUuId);
         OrganizationUser orgUser = new OrganizationUser();
         BeanUtils.copyProperties(form, orgUser);
         organizationUserMapper.updateByPrimaryKeySelective(orgUser);
@@ -116,6 +121,17 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
     @Override
     public int getOrgUserCountByOrgUuId(String orgUuId) {
         return organizationUserMapper.selectOrgUserCountByOrgUuId(orgUuId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void removeOrgUserById(Long id) {
+
+    }
+
+    @Override
+    public Byte getRoleByIdAndUserUuId(String orgUuId, String userUuId) {
+        return organizationUserMapper.selectRoleByIdAndUserUuId(orgUuId, userUuId);
     }
 
     /**

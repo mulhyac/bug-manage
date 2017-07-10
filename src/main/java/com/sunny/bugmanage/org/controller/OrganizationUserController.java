@@ -47,14 +47,25 @@ public class OrganizationUserController {
     }
 
     /**
-     * 根据id修改组织成员
+     * 根据成员userUuId修改组织成员
      *
      * @param form
      * @return
      */
-    @PostMapping("/{id:.+}")
-    public BaseResult modifierOrgUser(@PathVariable("id") Long id,@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
-        organizationUserService.modifierOrgUserByUserUuId(id,form);
+    @PostMapping("/{userUuId:.+}")
+    public BaseResult modifierOrgUser(@PathVariable("userUuId") String userUuId,@RequestBody @Validated({UpdateGroup.class}) OrgUserForm form) {
+        organizationUserService.modifierOrgUserByUserUuId(userUuId,form);
         return ResultUtils.success("修改组织成员成功");
+    }
+    /**
+     * 根据组织成员id删除人员
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id:.+}")
+    public BaseResult removeOrgUserById(@PathVariable("id") Long id) {
+        organizationUserService.removeOrgUserById(id);
+        return ResultUtils.success("删除组织成功");
     }
 }

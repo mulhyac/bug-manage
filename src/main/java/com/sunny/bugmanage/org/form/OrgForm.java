@@ -35,7 +35,7 @@ public class OrgForm extends BaseForm<String> {
     /**
      * 是否公开
      */
-    @Range(min = 0, max = 1, message = "请输入正确的状态", groups = {InsertGroup.class, UpdateGroup.class})
+    @Range(min = 0, max = 1, message = "请输入正确的值", groups = {InsertGroup.class, UpdateGroup.class})
     private Byte open;
 
 

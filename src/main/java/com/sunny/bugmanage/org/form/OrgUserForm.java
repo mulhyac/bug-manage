@@ -19,7 +19,7 @@ public class OrgUserForm extends BaseForm<Long> {
     /**
      * 组织uuid
      */
-    @NotNull(message = "请输入组织uuid", groups = {InsertGroup.class})
+    @NotNull(message = "请输入组织uuid", groups = {InsertGroup.class,UpdateGroup.class})
     private String orgUuid;
     /**
      * 用户uuid
@@ -31,10 +31,10 @@ public class OrgUserForm extends BaseForm<Long> {
      */
     @Length(max = 50, message = "用户名称应该在50个字符内", groups = {InsertGroup.class, UpdateGroup.class})
     private String name;
-   /**
+    /**
      * 职位
      */
-    @Length(max = 50, message = "职位应该在50个字符内", groups = {InsertGroup.class,UpdateGroup.class})
+    @Length(max = 50, message = "职位应该在50个字符内", groups = {InsertGroup.class, UpdateGroup.class})
     private String position;
     /**
      * 角色
@@ -81,4 +81,5 @@ public class OrgUserForm extends BaseForm<Long> {
     public void setPosition(String position) {
         this.position = position;
     }
+
 }

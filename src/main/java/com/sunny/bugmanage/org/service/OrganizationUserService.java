@@ -3,6 +3,7 @@ package com.sunny.bugmanage.org.service;
 import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.org.form.OrgUserForm;
 import com.sunny.bugmanage.org.model.OrganizationUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -36,14 +37,14 @@ public interface OrganizationUserService {
     OrganizationUser getOrganizationUserByUserUuId(String orgUuId, String userUuId) throws BugManageException;
 
     /**
-     * 根据用户id修改组织成员信息
+     * 根据userUuId修改组织成员信息
      *
      *
-     * @param id
+     * @param userUuId
      * @param form
      * @throws BugManageException
      */
-    void modifierOrgUserByUserUuId(Long id, OrgUserForm form) throws BugManageException;
+    void modifierOrgUserByUserUuId(String userUuId, OrgUserForm form) throws BugManageException;
 
     /**
      * 根据组织uuid删除组织成员
@@ -65,4 +66,18 @@ public interface OrganizationUserService {
      * @return
      */
     int getOrgUserCountByOrgUuId(String orgUuId);
+
+    /**
+     *根据组织成员id删除人员
+     * @param id
+     */
+    void removeOrgUserById(Long id);
+
+    /**
+     * 根据组织uuiid和userUuid获取人员角色(永远不会返回null，默认返回0)
+     * @param orgUuId
+     * @param userUuId
+     * @return
+     */
+    Byte getRoleByIdAndUserUuId(@Param("orgUuid") String orgUuId, @Param("userUuid")String userUuId);
 }

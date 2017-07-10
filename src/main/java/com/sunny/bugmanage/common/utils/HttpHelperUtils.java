@@ -1,5 +1,14 @@
 package com.sunny.bugmanage.common.utils;
 
+import com.google.gson.JsonObject;
+import com.sunny.bugmanage.common.exception.BugManageException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 /**
  * @author sunny
  * @className com.sunny.bugmanage.common.utils.HttpHelperUtils
@@ -9,8 +18,8 @@ package com.sunny.bugmanage.common.utils;
 public class HttpHelperUtils {
 
 
-   /* public static JsonObject sendGet(String url) {
-        HttpResponse response;
+   public static JsonObject sendGet(String url) {
+        CloseableHttpResponse response;
         BufferedReader reader = null;
         StringBuffer sbf;
         try {
@@ -33,6 +42,6 @@ public class HttpHelperUtils {
         } catch (Exception e) {
             throw new BugManageException(1, e);
         } 
-    }*/
+    }
 
 }
