@@ -29,9 +29,9 @@ public class OrganizationUserController {
      *
      * @return
      */
-    @GetMapping("/{uuId:.+}")
-    public BaseResult getOrgUserByOrgUUId(@PathVariable("uuId") String uuId, @Validated({SelectGroup.class}) OrgUserForm form) {
-        return ResultUtils.success("获取组织成员成功",organizationUserService.getOrgUserByOrgUUId(uuId,form));
+    @GetMapping("/{orgUuId:.+}")
+    public BaseResult getOrgUserByOrgUUId(@PathVariable("orgUuId") String orgUuId, @Validated({SelectGroup.class}) OrgUserForm form) {
+        return ResultUtils.success("获取组织成员成功",organizationUserService.getOrgUserByOrgUUId(orgUuId,form));
     }
 
     /**
