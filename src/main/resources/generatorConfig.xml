@@ -76,7 +76,7 @@
         </javaClientGenerator>
 
         <!-- !!!! Table Configurations !!!! -->
-        <table tableName="project" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+        <table tableName="project_issue" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <!-- optional   , only for mybatis3 runtime
                  自动生成的键值（identity,或者序列值）
@@ -108,22 +108,7 @@
             <!--<columnRenamingRule searchString="" replaceString=""/>-->
         </table>
 
-       <!-- <table tableName="organization_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="org_project" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="project_issue" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-
-        <table tableName="project_version" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+       <table tableName="project_version" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
@@ -133,10 +118,25 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
-        <table tableName="project_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>-->
+        <!--  <table tableName="project_issue" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false">
+             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+         </table>
+
+         <table tableName="project_version" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false">
+             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+         </table>
+
+         <table tableName="issue_track" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false">
+             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+         </table>
+
+         <table tableName="project_user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+                enableUpdateByExample="false">
+             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+         </table>-->
         <!--<table tableName="app_user_by_username" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false">-->
         <!--</table>-->
