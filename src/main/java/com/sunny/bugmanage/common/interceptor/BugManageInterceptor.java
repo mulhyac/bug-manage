@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 public class BugManageInterceptor implements HandlerInterceptor {
     // TODO:后期可以根据环境判断开发环境过滤swagger文档
     // private static final List<String> EXCLUDES = Arrays.asList("/swagger-resources","/configuration/security", "/v2/api-docs", "/configuration/ui", "/reg", "/auth");
-    private static final String encoding = "UTF-8";
-    private static final String[] EXCLUDES = {"/error","/user","/swagger-resources", "/configuration/security", "/v2/api-docs", "/configuration/ui", "/reg", "/auth"};
+    
+    private static final String[] EXCLUDES = {"/swagger-resources", "/configuration/security", "/v2/api-docs", "/configuration/ui", "/reg", "/auth"};
 
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object o) throws Exception {
