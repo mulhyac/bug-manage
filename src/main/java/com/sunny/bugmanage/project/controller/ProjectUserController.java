@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @description:
  */
 @RestController
-@RequestMapping("/project/user")
+@RequestMapping("/project")
 public class ProjectUserController {
     @Autowired
     private ProjectUserService projectUserService;
@@ -32,6 +32,6 @@ public class ProjectUserController {
     public BaseResult addProjectUser(@PathVariable("uuId") String proUuId, @RequestBody @Validated({InsertGroup.class}) ProjectUserForm form) {
         form.setProUuid(proUuId);
         projectUserService.addProjectUser(form);
-        return ResultUtils.success("创建项目成功");
+        return ResultUtils.success("添加项目成员成功");
     }
 }

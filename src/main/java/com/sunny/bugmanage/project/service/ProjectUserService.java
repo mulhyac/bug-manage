@@ -1,5 +1,6 @@
 package com.sunny.bugmanage.project.service;
 
+import com.sunny.bugmanage.common.exception.BugManageException;
 import com.sunny.bugmanage.project.form.ProjectUserForm;
 
 /**
@@ -11,7 +12,15 @@ import com.sunny.bugmanage.project.form.ProjectUserForm;
 public interface ProjectUserService {
     /**
      * 添加项目成员
+     *
      * @param form
      */
-    void addProjectUser(ProjectUserForm form);
+    void addProjectUser(ProjectUserForm form) throws BugManageException;
+
+    /**
+     * 自动添加项目成员
+     * @param proUuId
+     * @throws BugManageException
+     */
+    void addProjectUserBySelf(String proUuId) throws BugManageException;
 }

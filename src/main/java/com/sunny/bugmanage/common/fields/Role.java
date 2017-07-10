@@ -19,4 +19,26 @@ public class Role {
      *  删除的最小权限
      */
     public static Byte DEL_MIN_ROLE=25;
+
+    /**
+     * 获取职位
+     *
+     * @param role
+     * @return
+     */
+    public static String getPositionByRole(Byte role) {
+        if (role == null) {
+            return "成员";
+        }
+        switch (role) {
+            case 1:
+                return "成员";
+            case 20:
+                return "项目负责";
+            case 30:
+                return "管理员";
+            default:
+                return "成员";
+        }
+    }
 }

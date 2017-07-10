@@ -72,7 +72,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
 
         OrganizationUser orgUser = new OrganizationUser();
         BeanUtils.copyProperties(form, orgUser);
-        orgUser.setPosition(getPositionByRole(role));
+        orgUser.setPosition(Role.getPositionByRole(role));
         orgUser.setName(nickName);
 
         organizationUserMapper.insertSelective(orgUser);
@@ -153,7 +153,7 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
      * @param role
      * @return
      */
-    private String getPositionByRole(Byte role) {
+    /*private String getPositionByRole(Byte role) {
         if (role == null) {
             return "成员";
         }
@@ -167,5 +167,5 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
             default:
                 return "成员";
         }
-    }
+    }*/
 }
