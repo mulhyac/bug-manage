@@ -1,6 +1,8 @@
 package com.sunny.bugmanage.user.model;
 
-public class AppUserByPin {
+import com.sunny.bugmanage.common.model.BaseModel;
+
+public class AppUserByPin extends BaseModel<String> {
     private String pin;
 
     private Long userId;

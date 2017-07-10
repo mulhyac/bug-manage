@@ -1,6 +1,8 @@
 package com.sunny.bugmanage.user.model;
 
-public class AppUserByUsername {
+import com.sunny.bugmanage.common.model.BaseModel;
+
+public class AppUserByUsername extends BaseModel<String> {
     private String userName;
 
     private Long userId;

@@ -1,5 +1,6 @@
 package com.sunny.bugmanage.org.mapper;
 
+import com.sunny.bugmanage.common.mapper.BaseMapper;
 import com.sunny.bugmanage.org.form.OrgUserForm;
 import com.sunny.bugmanage.org.model.OrganizationUser;
 import com.sunny.bugmanage.org.model.vo.OrganizationUserVo;
@@ -7,19 +8,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface OrganizationUserMapper {
-    int deleteByPrimaryKey(Long id);
-
-    int insert(OrganizationUser record);
-
-    int insertSelective(OrganizationUser record);
-
-    OrganizationUser selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(OrganizationUser record);
-
-    int updateByPrimaryKey(OrganizationUser record);
-
+public interface OrganizationUserMapper extends BaseMapper<OrganizationUser,Long> {
+    
     /**
      * 根据用户uuid获取组织成员
      *

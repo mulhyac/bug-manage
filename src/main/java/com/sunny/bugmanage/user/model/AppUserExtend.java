@@ -1,8 +1,10 @@
 package com.sunny.bugmanage.user.model;
 
+import com.sunny.bugmanage.common.model.BaseModel;
+
 import java.util.Date;
 
-public class AppUserExtend {
+public class AppUserExtend extends BaseModel<Long> {
     private Long userId;
 
     private String userUuid;
