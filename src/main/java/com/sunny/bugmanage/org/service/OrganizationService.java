@@ -44,7 +44,14 @@ public interface OrganizationService {
      * @param uuid
      * @return
      */
-    Long getOrgByUUID(String uuid);
+    Long getOrgIdByUUID(String uuid);
+
+    /**
+     * 根据uuid获取组织人员上限
+     * @param uuid
+     * @return
+     */
+    Integer getOrgPeopleLimitByUUID(String uuid);
 
     /**
      * 根据uuid删除组织
@@ -66,4 +73,12 @@ public interface OrganizationService {
      * @param form
      */
     void modifierOrgByUUId(String uuId, OrgForm form);
+
+    /**
+     * 根据组织uuid获取组织项目上限
+     *
+     * @param uuid
+     * @return
+     */
+    Integer getOrgProLimitByUUID( String uuid);
 }

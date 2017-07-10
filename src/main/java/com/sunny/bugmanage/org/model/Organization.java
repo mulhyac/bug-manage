@@ -3,8 +3,6 @@ package com.sunny.bugmanage.org.model;
 import com.sunny.bugmanage.common.model.BaseModel;
 
 public class Organization extends BaseModel<Long> {
-
-    private static final long serialVersionUID = 5103648760787102533L;
     private String name;
 
     private String intro;
@@ -16,6 +14,10 @@ public class Organization extends BaseModel<Long> {
     private Byte status;
 
     private String address;
+
+    private Integer peopleLimit;
+
+    private Integer proLimit;
 
     public String getName() {
         return name;
@@ -63,6 +65,22 @@ public class Organization extends BaseModel<Long> {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public Integer getPeopleLimit() {
+        return peopleLimit;
+    }
+
+    public void setPeopleLimit(Integer peopleLimit) {
+        this.peopleLimit = peopleLimit;
+    }
+
+    public Integer getProLimit() {
+        return proLimit;
+    }
+
+    public void setProLimit(Integer proLimit) {
+        this.proLimit = proLimit;
     }
 
 }

@@ -11,14 +11,15 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="people_limit" property="peopleLimit" jdbcType="INTEGER" />
     <result column="open" property="open" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modifier" property="modifier" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, uuid, org_uuid, name, description, logo, url, people_limit, open, creator, create_time, 
-    modifier, modify_time
+    id, uuid, org_uuid, name, description, logo, url, people_limit, open, status, creator, 
+    create_time, modifier, modify_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -36,14 +37,14 @@
     </selectKey>
     insert into project (uuid, org_uuid, name, 
       description, logo, url, 
-      people_limit, open, creator, 
-      create_time, modifier, modify_time
-      )
+      people_limit, open, status, 
+      creator, create_time, modifier, 
+      modify_time)
     values (#{uuid,jdbcType=VARCHAR}, #{orgUuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{peopleLimit,jdbcType=INTEGER}, #{open,jdbcType=BIT}, #{creator,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
-      )
+      #{peopleLimit,jdbcType=INTEGER}, #{open,jdbcType=BIT}, #{status,jdbcType=TINYINT}, 
+      #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.sunny.bugmanage.project.model.Project" >
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
@@ -74,6 +75,9 @@
       </if>
       <if test="open != null" >
         open,
+      </if>
+      <if test="status != null" >
+        status,
       </if>
       <if test="creator != null" >
         creator,
@@ -112,6 +116,9 @@
       </if>
       <if test="open != null" >
         #{open,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
       </if>
       <if test="creator != null" >
         #{creator,jdbcType=VARCHAR},
@@ -154,6 +161,9 @@
       <if test="open != null" >
         open = #{open,jdbcType=BIT},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
       <if test="creator != null" >
         creator = #{creator,jdbcType=VARCHAR},
       </if>
@@ -179,10 +189,19 @@
       url = #{url,jdbcType=VARCHAR},
       people_limit = #{peopleLimit,jdbcType=INTEGER},
       open = #{open,jdbcType=BIT},
+      status = #{status,jdbcType=TINYINT},
       creator = #{creator,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modifier = #{modifier,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--根据组织uuid获取项目个数-->
+  <select id="selectProCountByOrgUuId" resultType="java.lang.Integer">
+    select
+      count(1)
+    from project
+    where  org_uuid = #{orgUuid,jdbcType=VARCHAR}
+  </select>
 </mapper>

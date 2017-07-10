@@ -71,14 +71,14 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Long getOrgByUUID(String uuid) {
+    public Long getOrgIdByUUID(String uuid) {
         return organizationMapper.selectOrgByUUID(uuid);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void removeOrgByUUID(String uuid) {
-        Long id = getOrgByUUID(uuid);
+        Long id = getOrgIdByUUID(uuid);
         if (id != null) {
             Organization org = new Organization();
             org.setId(id);
@@ -110,7 +110,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
 
         //TODO:对状态判断超过120的额外处理
-        Long id = getOrgByUUID(uuId);
+        Long id = getOrgIdByUUID(uuId);
         //这里不能修改状态为127>(删除状态)
         if (id != null) {
             Organization org = new Organization();
@@ -122,5 +122,15 @@ public class OrganizationServiceImpl implements OrganizationService {
             }
             organizationMapper.updateOrgById(org);
         }
+    }
+
+    @Override
+    public Integer getOrgPeopleLimitByUUID(String uuid) {
+        return organizationMapper.selectOrgPeopleLimitByUUID(uuid);
+    }
+
+    @Override
+    public Integer getOrgProLimitByUUID(String uuid) {
+        return organizationMapper.selectOrgProLimitByUUID(uuid);
     }
 }

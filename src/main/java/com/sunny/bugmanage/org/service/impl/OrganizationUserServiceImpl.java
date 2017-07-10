@@ -56,16 +56,20 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
         String userUuid = form.getUserUuid();
         OrganizationUser user = getOrganizationUserByUserUuId(orgUuid, userUuid);
         if (user != null) {
-            //存在的用户修改
-            //form.setId(user.getId());
-            modifierOrgUserByUserUuId(orgUuid, form);
+            return;
+            // modifierOrgUserByUserUuId(orgUuid, form);
         }
         //验证组织uuid和用户uuid
-        Long orgId = organizationService.getOrgByUUID(orgUuid);
+        Integer peopleLimit = organizationService.getOrgPeopleLimitByUUID(orgUuid);
         String nickName = appUserService.getAppUserNickNameByUuid(userUuid);
-        if (StringUtils.isBlank(nickName) || orgId == null) {
+        if (StringUtils.isBlank(nickName) || peopleLimit == 0) {
             return;
         }
+        //判断人员是否超限
+        if (peopleLimit < getOrgUserCountByOrgUuId(orgUuid)) {
+            throw new BugManageException(ResultEnum.ORG_USER_EXCEED_LIMIT);
+        }
+
         OrganizationUser orgUser = new OrganizationUser();
         BeanUtils.copyProperties(form, orgUser);
         orgUser.setPosition(getPositionByRole(role));
@@ -150,6 +154,9 @@ public class OrganizationUserServiceImpl implements OrganizationUserService {
      * @return
      */
     private String getPositionByRole(Byte role) {
+        if (role == null) {
+            return "成员";
+        }
         switch (role) {
             case 1:
                 return "成员";

@@ -10,14 +10,16 @@
         <result column="logo" property="logo" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="people_limit" property="peopleLimit" jdbcType="INTEGER"/>
+        <result column="pro_limit" property="proLimit" jdbcType="INTEGER"/>
         <result column="creator" property="creator" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="modifier" property="modifier" jdbcType="VARCHAR"/>
         <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, uuid, name, intro, open, logo, status, address, creator, create_time, modifier, 
-    modify_time
+    id, uuid, name, intro, open, logo, status, address, people_limit, pro_limit, creator, 
+    create_time, modifier, modify_time
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
@@ -35,12 +37,14 @@
         </selectKey>
         insert into organization (uuid, name, intro,
         open, logo, status, address,
-        creator, create_time, modifier,
-        modify_time)
+        people_limit, pro_limit, creator,
+        create_time, modifier, modify_time
+        )
         values (#{uuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR},
         #{open,jdbcType=BIT}, #{logo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR},
-        #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
-        #{modifyTime,jdbcType=TIMESTAMP})
+        #{peopleLimit,jdbcType=INTEGER}, #{proLimit,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
+        )
     </insert>
     <insert id="insertSelective" parameterType="com.sunny.bugmanage.org.model.Organization">
         <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER">
@@ -68,6 +72,12 @@
             </if>
             <if test="address != null">
                 address,
+            </if>
+            <if test="peopleLimit != null">
+                people_limit,
+            </if>
+            <if test="proLimit != null">
+                pro_limit,
             </if>
             <if test="creator != null">
                 creator,
@@ -103,6 +113,12 @@
             </if>
             <if test="address != null">
                 #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleLimit != null">
+                #{peopleLimit,jdbcType=INTEGER},
+            </if>
+            <if test="proLimit != null">
+                #{proLimit,jdbcType=INTEGER},
             </if>
             <if test="creator != null">
                 #{creator,jdbcType=VARCHAR},
@@ -142,6 +158,12 @@
             <if test="address != null">
                 address = #{address,jdbcType=VARCHAR},
             </if>
+            <if test="peopleLimit != null">
+                people_limit = #{peopleLimit,jdbcType=INTEGER},
+            </if>
+            <if test="proLimit != null">
+                pro_limit = #{proLimit,jdbcType=INTEGER},
+            </if>
             <if test="creator != null">
                 creator = #{creator,jdbcType=VARCHAR},
             </if>
@@ -166,6 +188,8 @@
       logo = #{logo,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
       address = #{address,jdbcType=VARCHAR},
+      people_limit = #{peopleLimit,jdbcType=INTEGER},
+      pro_limit = #{proLimit,jdbcType=INTEGER},
       creator = #{creator,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modifier = #{modifier,jdbcType=VARCHAR},
@@ -179,14 +203,14 @@
     </resultMap>
     <!--根据组织名称获取uuid-->
     <select id="selectUUIDByName" resultType="java.lang.String">
-      select
-          uuid
-      from
-          organization
-      where
-          name = #{name,jdbcType=VARCHAR}
-          and status &lt;=120
-  </select>
+        select
+        uuid
+        from
+        organization
+        where
+        name = #{name,jdbcType=VARCHAR}
+        and status &lt;=120
+    </select>
 
     <!--查询全部组织-->
     <select id="selectAllOrg" parameterType="com.sunny.bugmanage.org.form.OrgForm" resultMap="OrganizationVo">
@@ -218,11 +242,11 @@
     <!--根据组织uuid获取组织id -->
     <select id="selectOrgByUUID" resultType="java.lang.Long">
         SELECT
-           id
-         from
-            organization
-         where status !=127
-         and uuid=  #{uuid,jdbcType=VARCHAR}
+        id
+        from
+        organization
+        where status !=127
+        and uuid=  #{uuid,jdbcType=VARCHAR}
     </select>
 
     <!--根据id修改组织状态-->
@@ -256,4 +280,24 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
+    
+     <!--根据组织uuid获取组织人员上限-->
+    <select id="selectOrgPeopleLimitByUUID" resultType="java.lang.Integer">
+        SELECT
+         IF(count(people_limit)=0,0,people_limit) people_limit
+        from
+         organization
+        where status !=127
+        and uuid=  #{uuid,jdbcType=VARCHAR}
+    </select>
+
+    <!--根据组织uuid获取组织项目个数上限-->
+    <select id="selectOrgProLimitByUUID" resultType="java.lang.Integer">
+        SELECT
+         IF(count(pro_limit)=0,0,pro_limit) pro_limit
+        from
+         organization
+        where status !=127
+        and uuid=  #{uuid,jdbcType=VARCHAR}
+    </select>
 </mapper>

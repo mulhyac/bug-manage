@@ -2,6 +2,8 @@ package com.sunny.bugmanage.project.model;
 
 import com.sunny.bugmanage.common.model.BaseModel;
 
+import java.util.Date;
+
 public class Project extends BaseModel<Long> {
     
     private String orgUuid;
@@ -18,6 +20,16 @@ public class Project extends BaseModel<Long> {
 
     private Boolean open;
 
+    private Byte status;
+
+    private String creator;
+
+    private Date createTime;
+
+    private String modifier;
+
+    private Date modifyTime;
+    
     public String getOrgUuid() {
         return orgUuid;
     }
@@ -72,6 +84,14 @@ public class Project extends BaseModel<Long> {
 
     public void setOpen(Boolean open) {
         this.open = open;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
 }

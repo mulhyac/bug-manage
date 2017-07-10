@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface OrganizationMapper extends BaseMapper<Organization,Long> {
-    
+public interface OrganizationMapper extends BaseMapper<Organization, Long> {
+
     /**
      * 根据名称获取组织uuid
      *
@@ -37,8 +37,23 @@ public interface OrganizationMapper extends BaseMapper<Organization,Long> {
 
     /**
      * 根据id修改组织状态 ta
-     *  
+     *
      * @param org
      */
     void updateOrgById(Organization org) throws BugManageException;
+
+    /**
+     * 根据组织uuid获取组织人员上限
+     *
+     * @param uuid
+     * @return
+     */
+    Integer selectOrgPeopleLimitByUUID(@Param("uuid") String uuid);
+    /**
+     * 根据组织uuid获取组织项目个数上限
+     *
+     * @param uuid
+     * @return
+     */
+    Integer selectOrgProLimitByUUID(@Param("uuid") String uuid);
 }

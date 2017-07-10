@@ -48,8 +48,6 @@ public class OrganizationController {
         return ResultUtils.success(organizationService.getAllOrg(form));
     }
 
-    // @ApiOperation(value = "创建组织", notes = "创建组织")
-
     /**
      * 创建组织
      *

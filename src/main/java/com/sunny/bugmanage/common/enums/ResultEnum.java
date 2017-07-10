@@ -47,6 +47,10 @@ public enum ResultEnum {
      * 组织成员已经添加
      */
     ORG_USER_EXIST(202, "成员已经添加"),
+    /**
+     * 组织成员人员达到上限
+     */
+    ORG_USER_EXCEED_LIMIT(202, "组织成员人员达到上限"),
     ;
     private Integer code;
     private String msg;
